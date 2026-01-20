@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useTheme } from '@/contexts/ThemeContexts';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [

@@ -1,6 +1,3 @@
-import { ScrollReveal, StaggerContainer, StaggerItem } from '@/components/animations/ScrollReveal';
-import { motion } from 'framer-motion';
-
 const skillGroups = [
   {
     category: 'Frontend',
@@ -26,39 +23,36 @@ export const Skills = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
-          <ScrollReveal>
-            <div className="mb-16">
-              <span className="text-primary font-mono text-sm tracking-wider uppercase">Skills</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-                Technical Toolkit
-              </h2>
-            </div>
-          </ScrollReveal>
+          <div className="mb-16">
+            <span className="text-primary font-mono text-sm tracking-wider uppercase">Skills</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
+              Technical Toolkit
+            </h2>
+          </div>
 
           {/* Skills Grid */}
-          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             {skillGroups.map((group, index) => (
-              <StaggerItem key={index}>
-                <div className="p-6 rounded-xl bg-card border border-border shadow-card h-full">
-                  <h3 className="text-lg font-semibold text-foreground mb-4">
-                    {group.category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {group.skills.map((skill, skillIndex) => (
-                      <motion.span
-                        key={skillIndex}
-                        className="px-3 py-1.5 text-sm font-medium bg-secondary text-secondary-foreground rounded-md border border-border hover:border-primary/50 transition-colors cursor-default"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
+              <div
+                key={index}
+                className="p-6 rounded-xl bg-card border border-border shadow-card"
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-4">
+                  {group.category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill, skillIndex) => (
+                    <span
+                      key={skillIndex}
+                      className="px-3 py-1.5 text-sm font-medium bg-secondary text-secondary-foreground rounded-md border border-border hover:border-primary/50 transition-colors"
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
+          </div>
         </div>
       </div>
     </section>
