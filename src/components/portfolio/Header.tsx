@@ -26,21 +26,20 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 max-md:bg-background/80 max-md:backdrop-blur-lg max-md:border-b max-md:border-border ${
         isScrolled
-          ? 'bg-background/80 backdrop-blur-lg border-b border-border'
+          ? 'md:bg-background/80 md:backdrop-blur-lg md:border-b md:border-border'
           : 'bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6">
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a
-            href="#"
-            className="text-xl font-bold tracking-tight text-foreground hover:text-primary transition-colors"
-          >
-            austin<span className="text-primary">.</span>
-          </a>
+          {theme === 'dark' ? (
+            <img src="/asjs-logo-light.png" alt="ASJS Logo" className="h-full w-auto" />
+          ) : (
+            <img src="/asjs-logo-dark.png" alt="ASJS Logo" className="h-full w-auto" />
+          )}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
