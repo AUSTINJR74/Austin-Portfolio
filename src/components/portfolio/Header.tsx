@@ -3,15 +3,14 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContexts';
 import { Button } from '@/components/ui/button';
 
-const navLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
-];
+interface HeaderProps {
+  navLinks: Array<{
+    href: string;
+    label: string;
+  }>;
+}
 
-export const Header = () => {
+export const Header = ({ navLinks }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();

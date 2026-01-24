@@ -1,0 +1,256 @@
+{
+  "hero": {
+    "statusBadge": "Associate Software Engineer @ Zolvit",
+    "headline": {
+      "text": "Engineering",
+      "highlight": "High-Performance",
+      "suffix": "Web Systems"
+    },
+    "subheadline": "Frontend architecture specialist building production-grade systems with Next.js, React, and TypeScript. Focused on Core Web Vitals, SEO, and scalable architectures.",
+    "ctaButtons": [
+      {
+        "label": "View Projects",
+        "href": "#projects",
+        "variant": "primary"
+      },
+      {
+        "label": "Get in Touch",
+        "href": "#contact",
+        "variant": "outline"
+      }
+    ],
+    "stats": [
+      {
+        "value": "1.5+",
+        "label": "Years Exp"
+      },
+      {
+        "value": "3K+",
+        "label": "Pages Fixed"
+      },
+      {
+        "value": "8%",
+        "label": "SEO Lift"
+      }
+    ]
+  },
+  "about": {
+    "sectionLabel": "About",
+    "title": "Engineering-First Mindset",
+    "paragraphs": [
+      "I'm a frontend engineer who thinks in systems, not just screens. At Zolvit (formerly Vakilsearch), I build and maintain high-traffic Next.js applications where every millisecond of performance translates to real business impact.",
+      "My approach is rooted in understanding the \"why\" behind technical decisions. Whether it's choosing between server-side rendering for SEO-critical pages or implementing incremental static regeneration for frequently updated content, I prioritize solutions that scale.",
+      "I don't just write code—I build systems that empower non-engineers through CMS-driven architectures, reduce operational overhead, and improve search visibility through technical SEO implementations."
+    ],
+    "highlights": [
+      {
+        "icon": "Gauge",
+        "title": "Performance Engineering",
+        "description": "Obsessed with Core Web Vitals, JS execution optimization, and delivering sub-second experiences."
+      },
+      {
+        "icon": "Layers",
+        "title": "Architecture Decisions",
+        "description": "SSR vs SSG vs ISR—choosing the right rendering strategy for each use case."
+      },
+      {
+        "icon": "Code2",
+        "title": "End-to-End Ownership",
+        "description": "From technical specs to production deployment, owning the complete development lifecycle."
+      },
+      {
+        "icon": "Users",
+        "title": "Cross-Team Collaboration",
+        "description": "Working with backend, design, and product teams to ship cohesive solutions."
+      }
+    ]
+  },
+  "experience": {
+    "sectionLabel": "Experience",
+    "title": "Impact, Not Job Descriptions",
+    "items": [
+      {
+        "company": "Zolvit",
+        "previousName": "formerly Vakilsearch",
+        "role": "Associate Software Engineer",
+        "period": "Apr 2025 – Present",
+        "type": "Full-time",
+        "highlights": [
+          "Own development of high-traffic Next.js applications serving legal services platform",
+          "Lead Core Web Vitals optimization initiatives—JS execution, caching strategies, asset delivery",
+          "Architected CMS-driven layouts enabling marketing team to ship pages without engineering",
+          "Reduced 3,000+ underperforming pages to zero in Google Search Console through technical SEO fixes",
+          "Increased search impressions by 8% within 10 days through structured data and meta optimizations"
+        ]
+      },
+      {
+        "company": "Zolvit",
+        "previousName": "formerly Vakilsearch",
+        "role": "Frontend Developer Intern",
+        "period": "Apr 2024 – Mar 2025",
+        "type": "Internship",
+        "highlights": [
+          "Built production React & Next.js components for high-traffic legal services pages",
+          "Implemented accessibility standards (WCAG) and established shared component library",
+          "Integrated RESTful APIs with proper error handling and loading states",
+          "Documented components in Storybook, improving developer experience and design handoff",
+          "Collaborated with backend and design teams to improve cross-functional workflows"
+        ]
+      }
+    ]
+  },
+  "education": {
+    "sectionLabel": "Education",
+    "title": "Academic Background",
+    "items": [
+      {
+        "degree": "Bachelor of Engineering - EEE",
+        "institution": "Sri Eshwar College of Engineering",
+        "period": "2020 – 2024",
+        "grade": "CGPA: 8.67"
+      },
+      {
+        "degree": "Higher Secondary Certificate (HSC)",
+        "institution": "St. Peter's Matriculation Higher Secondary School",
+        "period": "2019 – 2020",
+        "grade": "71.5%"
+      },
+      {
+        "degree": "Secondary School Leaving Certificate (SSLC)",
+        "institution": "St. Peter's Matriculation Higher Secondary School",
+        "period": "2017 – 2018",
+        "grade": "91.4%"
+      }
+    ]
+  },
+  "projects": {
+    "sectionLabel": "Projects",
+    "title": "Case Studies",
+    "description": "Real production systems with measurable outcomes. Each project represents a problem solved, not just code written.",
+    "items": [
+      {
+        "icon": "Server",
+        "title": "CMS-Based Legal Services Platform",
+        "problem": "Engineering team bottleneck for content updates; slow time-to-market for new pages.",
+        "decisions": [
+          "SSR for SEO-critical pages to maximize crawlability",
+          "CMS-driven layouts with API-first content delivery",
+          "Component library for consistent UI across dynamically generated pages"
+        ],
+        "impact": "Reduced engineering dependency for content updates by 80%, enabling marketing team to ship pages independently.",
+        "stack": ["Next.js", "React", "TypeScript", "REST APIs", "Headless CMS"]
+      },
+      {
+        "icon": "Video",
+        "title": "Video Consultation Web Application",
+        "problem": "Need for real-time legal consultations with reliable, low-latency video.",
+        "decisions": [
+          "WebRTC for peer-to-peer video with fallback TURN servers",
+          "WebSocket for signaling and real-time state synchronization",
+          "Integrated authentication and payment flow"
+        ],
+        "impact": "Delivered production-ready video consultations with <200ms latency and seamless payment integration.",
+        "stack": ["React", "WebRTC", "WebSockets", "Node.js", "Payment Gateway"]
+      },
+      {
+        "icon": "Search",
+        "title": "Lawyers Listing & Public Q&A Platform",
+        "problem": "Large datasets of lawyers and Q&A content requiring fast search and SEO visibility.",
+        "decisions": [
+          "Server-rendered pages for search engine indexing",
+          "Elasticsearch for sub-second search across 100K+ records",
+          "JWT-based authentication with role-based access"
+        ],
+        "impact": "Achieved 99.9% uptime with <100ms search response times serving high-traffic legal queries.",
+        "stack": ["Next.js", "Hapi.js", "Elasticsearch", "JWT", "PostgreSQL"]
+      }
+    ]
+  },
+  "skills": {
+    "sectionLabel": "Skills",
+    "title": "Technical Toolkit",
+    "groups": [
+      {
+        "category": "Frontend",
+        "skills": ["React.js", "Next.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS"]
+      },
+      {
+        "category": "Backend",
+        "skills": ["Node.js", "Express.js", "Hapi.js", "REST APIs", "JWT Auth", "Elasticsearch"]
+      },
+      {
+        "category": "DevOps & Tools",
+        "skills": ["Docker", "Jenkins", "NGINX", "Git", "Grafana", "Linux"]
+      },
+      {
+        "category": "Analytics & Growth",
+        "skills": ["Mixpanel", "GrowthBook", "Google Search Console", "Core Web Vitals"]
+      }
+    ]
+  },
+  "achievements": {
+    "sectionLabel": "Achievements",
+    "title": "Measurable Impact",
+    "items": [
+      {
+        "icon": "Search",
+        "metric": "3,000+",
+        "label": "Underperforming Pages Fixed",
+        "description": "Reduced poor-performing pages to zero in Google Search Console through systematic technical SEO improvements."
+      },
+      {
+        "icon": "TrendingUp",
+        "metric": "8%",
+        "label": "Search Impressions Increase",
+        "description": "Achieved measurable SEO lift within 10 days through structured data and meta tag optimizations."
+      },
+      {
+        "icon": "Gauge",
+        "metric": "CWV",
+        "label": "Core Web Vitals Green",
+        "description": "Optimized LCP, FID, and CLS across mobile and desktop for production applications."
+      },
+      {
+        "icon": "Award",
+        "metric": "99.9%",
+        "label": "Application Uptime",
+        "description": "Maintained high availability for legal services platform serving thousands of daily users."
+      }
+    ]
+  },
+  "footer": {
+    "sectionLabel": "Contact",
+    "title": "Let's Build Something Fast",
+    "description": "I'm always interested in discussing high-performance web systems, frontend architecture, and scalable solutions.",
+    "socialLinks": [
+      {
+        "icon": "Mail",
+        "label": "Email",
+        "href": "mailto:austinjr74@gmail.com",
+        "username": "austinjr74@gmail.com"
+      },
+      {
+        "icon": "Linkedin",
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/austinjr74/",
+        "username": "austinjr74"
+      },
+      {
+        "icon": "Github",
+        "label": "GitHub",
+        "href": "https://github.com/austinjr74",
+        "username": "austinjr74"
+      }
+    ],
+    "copyright": "Built with performance in mind. © {year} Austin Jose R"
+  },
+  "header": {
+    "navLinks": [
+      { "href": "#about", "label": "About" },
+      { "href": "#experience", "label": "Experience" },
+      { "href": "#projects", "label": "Projects" },
+      { "href": "#skills", "label": "Skills" },
+      { "href": "#contact", "label": "Contact" }
+    ]
+  }
+}
