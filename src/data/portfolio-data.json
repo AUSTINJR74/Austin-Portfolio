@@ -3,10 +3,10 @@
     "statusBadge": "Associate Software Engineer @ Zolvit",
     "headline": {
       "text": "Engineering",
-      "highlight": "High-Performance",
-      "suffix": "Web Systems"
+      "highlight": "Web Systems",
+      "suffix": "Not Just Pages"
     },
-    "subheadline": "Frontend architecture specialist building production-grade systems with Next.js, React, and TypeScript. Focused on Core Web Vitals, SEO, and scalable architectures.",
+    "subheadline": "Making the web feel lighter, faster, and easier to reach.",
     "ctaButtons": [
       {
         "label": "View Projects",
@@ -21,7 +21,7 @@
     ],
     "stats": [
       {
-        "value": "1.5+",
+        "value": "2",
         "label": "Years Exp"
       },
       {
@@ -104,22 +104,22 @@
     "title": "Academic Background",
     "items": [
       {
-        "degree": "Bachelor of Engineering - EEE",
+        "degree": "B.E. Electrical and Electronics Engineering",
         "institution": "Sri Eshwar College of Engineering",
-        "period": "2020 – 2024",
+        "period": "2021 – 2025",
         "grade": "CGPA: 8.67"
       },
       {
         "degree": "Higher Secondary Certificate (HSC)",
         "institution": "St. Peter's Matriculation Higher Secondary School",
-        "period": "2019 – 2020",
-        "grade": "71.5%"
+        "period": "2019 – 2021",
+        "grade": "91.0%"
       },
       {
         "degree": "Secondary School Leaving Certificate (SSLC)",
         "institution": "St. Peter's Matriculation Higher Secondary School",
-        "period": "2017 – 2018",
-        "grade": "91.4%"
+        "period": "2018 – 2019",
+        "grade": "90.2%"
       }
     ]
   },
@@ -226,20 +226,22 @@
       {
         "icon": "Mail",
         "label": "Email",
-        "href": "mailto:austinjr74@gmail.com",
-        "username": "austinjr74@gmail.com"
+        "href": "mailto:austinjr74@gmail.com"
       },
       {
         "icon": "Linkedin",
         "label": "LinkedIn",
-        "href": "https://www.linkedin.com/in/austinjr74/",
-        "username": "austinjr74"
+        "href": "https://www.linkedin.com/in/austinjr74/"
       },
       {
         "icon": "Github",
         "label": "GitHub",
-        "href": "https://github.com/austinjr74",
-        "username": "austinjr74"
+        "href": "https://github.com/austinjr74"
+      },
+      {
+        "icon": "WhatsApp",
+        "label": "WhatsApp",
+        "href": "https://wa.me/9171838350"
       }
     ],
     "copyright": "Built with performance in mind. © {year} Austin Jose R"

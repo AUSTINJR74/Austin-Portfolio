@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  ArrowUpRight,
   Mail,
   Server,
   Video,
@@ -16,10 +17,13 @@ import {
   ChevronRight,
   Linkedin,
   Github,
+  MessageCircle,
+  MessagesSquare
 } from 'lucide-react';
 
 export const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   ArrowRight,
+  ArrowUpRight,
   Mail,
   Server,
   Video,
@@ -36,4 +40,6 @@ export const iconMap: Record<string, React.ComponentType<{ className?: string }>
   ChevronRight,
   Linkedin,
   Github,
+  MessageCircle,
+  WhatsApp: MessagesSquare,
 };

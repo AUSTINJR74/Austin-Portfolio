@@ -43,7 +43,7 @@ export const Footer = ({ sectionLabel, title, description, socialLinks, copyrigh
                 >
                   <a href={link.href} target="_blank" rel="noopener noreferrer">
                     {Icon && <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />}
-                    <span className="font-medium">{link.username}</span>
+                    <span className="font-medium">{link.label}</span>
                     {ArrowUpRightIcon && <ArrowUpRightIcon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />}
                   </a>
                 </Button>
