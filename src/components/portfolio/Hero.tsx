@@ -102,7 +102,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
             {/* Quick Stats */}
             <div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-lg mt-12 sm:mt-16 pt-8 border-t border-border animate-fade-up"
+              className="grid grid-cols-3 gap-4 sm:gap-8 max-w-lg mt-12 sm:mt-16 pt-8 border-t border-border animate-fade-up"
               style={{ animationDelay: '0.3s' }}
             >
               {stats.map((stat, index) => (

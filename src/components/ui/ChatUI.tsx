@@ -24,16 +24,36 @@ export default function ChatUI({
   const [visiblePrompts, setVisiblePrompts] = useState<PromptItem[]>([]);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
+  const lastScrolledBotIdRef = useRef<string | null>(null);
 
-  // Auto-scroll to latest message
   useEffect(() => {
     const container = chatContainerRef.current;
     if (!container) return;
 
-    container.scrollTo({
-      top: container.scrollHeight,
-      behavior: "smooth",
-    });
+    if (isTyping) {
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: "smooth",
+      });
+      return;
+    }
+
+    const last = messages[messages.length - 1];
+    const prev = messages[messages.length - 2];
+    if (!last || last.role !== "bot") return;
+    if (last.id === lastScrolledBotIdRef.current) return;
+    if (!prev || prev.role !== "user") return;
+
+    const userEl = container.querySelector<HTMLElement>(
+      `[data-message-id="${prev.id}"]`
+    );
+    if (!userEl) return;
+
+    lastScrolledBotIdRef.current = last.id;
+
+    const paddingTop = 8;
+    const targetTop = Math.max(0, userEl.offsetTop - paddingTop);
+    container.scrollTo({ top: targetTop, behavior: "smooth" });
   }, [messages.length, isTyping]);
 
   useEffect(() => {
@@ -88,135 +108,141 @@ export default function ChatUI({
                 Ask Gently. Get Answered Simply.
               </div>
 
-              {/* Messages */}
-              <div
-                ref={chatContainerRef}
-                className="mt-5 h-[150px] md:h-[300px] overflow-y-auto pr-1"
-              >
-                <div className="space-y-2.5 text-sm leading-relaxed">
-                  {messages.map((m) => (
-                    <div
-                      key={m.id}
-                      className={`flex ${
-                        m.role === "user"
-                          ? "justify-end"
-                          : "justify-start"
-                      }`}
-                    >
+              <div className="mt-5 h-[350px] md:h-[400px] flex flex-col">
+                {/* Messages */}
+                <div
+                  ref={chatContainerRef}
+                  className="flex-1 overflow-y-auto pr-1"
+                >
+                  <div className="space-y-2.5 text-sm leading-relaxed">
+                    {messages.map((m) => (
                       <div
-                        className={[
-                          "max-w-[85%] flex flex-col",
+                        key={m.id}
+                        data-message-id={m.id}
+                        className={`flex ${
                           m.role === "user"
-                            ? "items-end text-left"
-                            : "items-start text-left mr-auto",
-                        ].join(" ")}
+                            ? "justify-end"
+                            : "justify-start"
+                        }`}
                       >
                         <div
                           className={[
-                            "rounded-xl border px-3 py-2 whitespace-pre-line",
+                            "max-w-[85%] flex flex-col",
                             m.role === "user"
-                              ? "bg-primary text-primary-foreground border-primary/30"
-                              : "bg-background/40 text-muted-foreground border-border/60",
+                              ? "items-end text-left"
+                              : "items-start text-left mr-auto",
                           ].join(" ")}
                         >
-                          {m.content}
-                        </div>
-
-                        {m.role === "bot" && (m.suggestions?.length ?? 0) > 0 && (
-                          <div className="mt-2 flex flex-wrap items-start justify-start gap-2 self-start text-left">
-                            {m.suggestions!.map((s) => (
-                              <button
-                                key={`${m.id}-${s}`}
-                                type="button"
-                                onClick={() => onSend(s)}
-                                className={[
-                                  "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors text-left whitespace-normal",
-                                  "bg-primary/10 text-foreground border-primary/30",
-                                  "hover:bg-primary/15 hover:border-primary/60",
-                                ].join(" ")}
-                                aria-label={`Send suggestion: ${s}`}
-                              >
-                                {s}
-                              </button>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-
-                  {isTyping && (
-                    <div className="flex justify-start">
-                      <div className="max-w-[85%] rounded-xl border px-3 py-2 bg-background/40 text-muted-foreground border-border/60">
-                        <div className={["flex items-center gap-2", typingColorClass].join(" ")}>
-                          <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                            aria-hidden
-                            className="shrink-0"
+                          <div
+                            className={[
+                              "rounded-xl border px-3 py-2 whitespace-pre-line",
+                              m.role === "user"
+                                ? "bg-primary text-primary-foreground border-primary/30"
+                                : m.id.startsWith("init")
+                                  ? "bg-gradient-primary text-primary-foreground border-primary/40 shadow-elevated"
+                                  : "bg-background/40 text-muted-foreground border-border/60",
+                            ].join(" ")}
                           >
-                            <circle cx="6" cy="12" r="2" fill="currentColor">
-                              <animate
-                                attributeName="opacity"
-                                values="0.25;1;0.25"
-                                dur="1s"
-                                repeatCount="indefinite"
-                                begin="0s"
-                              />
-                            </circle>
-                            <circle cx="12" cy="12" r="2" fill="currentColor">
-                              <animate
-                                attributeName="opacity"
-                                values="0.25;1;0.25"
-                                dur="1s"
-                                repeatCount="indefinite"
-                                begin="0.15s"
-                              />
-                            </circle>
-                            <circle cx="18" cy="12" r="2" fill="currentColor">
-                              <animate
-                                attributeName="opacity"
-                                values="0.25;1;0.25"
-                                dur="1s"
-                                repeatCount="indefinite"
-                                begin="0.3s"
-                              />
-                            </circle>
-                          </svg>
-                          <span className="italic">{typingText}</span>
+                            {m.content}
+                          </div>
+
+                          {m.role === "bot" && (m.suggestions?.length ?? 0) > 0 && (
+                            <div className="mt-2 flex flex-wrap items-start justify-start gap-2 self-start text-left">
+                              {m.suggestions!.map((s) => (
+                                <button
+                                  key={`${m.id}-${s}`}
+                                  type="button"
+                                  onClick={() => onSend(s)}
+                                  className={[
+                                    "rounded-xl border px-3 py-1.5 text-xs font-medium transition-colors text-left whitespace-normal",
+                                    "bg-primary/10 text-foreground border-primary/30",
+                                    "hover:bg-primary/15 hover:border-primary/60",
+                                  ].join(" ")}
+                                  aria-label={`Send suggestion: ${s}`}
+                                >
+                                  {s}
+                                </button>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                  )}
+                    ))}
 
-                  <div ref={chatEndRef} />
+                    {isTyping && (
+                      <div className="flex justify-start">
+                        <div className="max-w-[85%] rounded-xl border px-3 py-2 bg-background/40 text-muted-foreground border-border/60">
+                          <div className={["flex items-center gap-2", typingColorClass].join(" ")}>
+                            <svg
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              aria-hidden
+                              className="shrink-0"
+                            >
+                              <circle cx="6" cy="12" r="2" fill="currentColor">
+                                <animate
+                                  attributeName="opacity"
+                                  values="0.25;1;0.25"
+                                  dur="1s"
+                                  repeatCount="indefinite"
+                                  begin="0s"
+                                />
+                              </circle>
+                              <circle cx="12" cy="12" r="2" fill="currentColor">
+                                <animate
+                                  attributeName="opacity"
+                                  values="0.25;1;0.25"
+                                  dur="1s"
+                                  repeatCount="indefinite"
+                                  begin="0.15s"
+                                />
+                              </circle>
+                              <circle cx="18" cy="12" r="2" fill="currentColor">
+                                <animate
+                                  attributeName="opacity"
+                                  values="0.25;1;0.25"
+                                  dur="1s"
+                                  repeatCount="indefinite"
+                                  begin="0.3s"
+                                />
+                              </circle>
+                            </svg>
+                            <span className="italic">{typingText}</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    <div ref={chatEndRef} />
+                  </div>
                 </div>
+
+                {/* Prompt chips */}
+                {showPrompts && visiblePrompts.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {visiblePrompts.map((item) => (
+                      <button
+                        key={item.name}
+                        type="button"
+                        onClick={() => onSend(item.prompt)}
+                        className={[
+                          "w-full sm:w-auto rounded-xl border px-3 py-1.5 text-xs font-medium transition-colors",
+                          "bg-background/30 text-muted-foreground border-border/60",
+                          "hover:border-primary/60 hover:text-foreground",
+                          "text-left flex items-center justify-start gap-2",
+                          item.active ? "border-border text-foreground" : "",
+                        ].join(" ")}
+                        aria-label={`Send prompt: ${item.name}`}
+                      >
+                        🔍 {item.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-
-              {/* Prompt chips */}
-              {showPrompts && visiblePrompts.length > 0 && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {visiblePrompts.map((item) => (
-                    <button
-                      key={item.name}
-                      type="button"
-                      onClick={() => onSend(item.prompt)}
-                      className={[
-                        "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-                        "bg-background/30 text-muted-foreground border-border/60",
-                        "hover:border-primary/60 hover:text-foreground",
-                        item.active ? "border-border text-foreground" : "",
-                      ].join(" ")}
-                      aria-label={`Send prompt: ${item.name}`}
-                    >
-                      🔍 {item.name}
-                    </button>
-                  ))}
-                </div>
-              )}
 
               {/* Input */}
               <form
@@ -226,7 +252,7 @@ export default function ChatUI({
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Did you clear cache before typing?"
+                  placeholder="Say HI. Austin’s Awake."
                   className="w-full rounded-md border border-border/60 bg-background/40 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
                 <button
