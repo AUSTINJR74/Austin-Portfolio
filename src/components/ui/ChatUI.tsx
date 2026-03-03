@@ -4,17 +4,24 @@ import { ChatMessage, PromptItem } from "@/lib/chat/types";
 type Props = {
   messages: ChatMessage[];
   isTyping: boolean;
+  typingText: string;
+  typingColorClass: string;
   onSend: (text: string) => void;
   promptItems: PromptItem[];
+  showPrompts: boolean;
 };
 
 export default function ChatUI({
   messages,
   isTyping,
+  typingText,
+  typingColorClass,
   onSend,
   promptItems,
+  showPrompts,
 }: Props) {
   const [input, setInput] = useState("");
+  const [visiblePrompts, setVisiblePrompts] = useState<PromptItem[]>([]);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,6 +36,22 @@ export default function ChatUI({
     });
   }, [messages.length, isTyping]);
 
+  useEffect(() => {
+    if (!showPrompts) {
+      setVisiblePrompts([]);
+      return;
+    }
+
+    if (promptItems.length === 0) {
+      setVisiblePrompts([]);
+      return;
+    }
+
+    const desiredCount = Math.min(5, Math.max(4, promptItems.length >= 5 ? 5 : promptItems.length));
+    const shuffled = [...promptItems].sort(() => Math.random() - 0.5);
+    setVisiblePrompts(shuffled.slice(0, desiredCount));
+  }, [promptItems, showPrompts]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -38,7 +61,7 @@ export default function ChatUI({
   };
 
   return (
-    <div className="mx-auto max-w-6xl animate-fade-up">
+    <div className="mx-auto max-w-6xl animate-fade-up text-left">
       <div className="relative">
         {/* Background Glow */}
         <div
@@ -82,13 +105,42 @@ export default function ChatUI({
                     >
                       <div
                         className={[
-                          "max-w-[85%] rounded-xl border px-3 py-2 whitespace-pre-line text-left",
+                          "max-w-[85%] flex flex-col",
                           m.role === "user"
-                            ? "bg-primary text-primary-foreground border-primary/30"
-                            : "bg-background/40 text-muted-foreground border-border/60",
+                            ? "items-end text-left"
+                            : "items-start text-left mr-auto",
                         ].join(" ")}
                       >
-                        {m.content}
+                        <div
+                          className={[
+                            "rounded-xl border px-3 py-2 whitespace-pre-line",
+                            m.role === "user"
+                              ? "bg-primary text-primary-foreground border-primary/30"
+                              : "bg-background/40 text-muted-foreground border-border/60",
+                          ].join(" ")}
+                        >
+                          {m.content}
+                        </div>
+
+                        {m.role === "bot" && (m.suggestions?.length ?? 0) > 0 && (
+                          <div className="mt-2 flex flex-wrap items-start justify-start gap-2 self-start text-left">
+                            {m.suggestions!.map((s) => (
+                              <button
+                                key={`${m.id}-${s}`}
+                                type="button"
+                                onClick={() => onSend(s)}
+                                className={[
+                                  "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors text-left whitespace-normal",
+                                  "bg-primary/10 text-foreground border-primary/30",
+                                  "hover:bg-primary/15 hover:border-primary/60",
+                                ].join(" ")}
+                                aria-label={`Send suggestion: ${s}`}
+                              >
+                                {s}
+                              </button>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -96,7 +148,46 @@ export default function ChatUI({
                   {isTyping && (
                     <div className="flex justify-start">
                       <div className="max-w-[85%] rounded-xl border px-3 py-2 bg-background/40 text-muted-foreground border-border/60">
-                        Typing…
+                        <div className={["flex items-center gap-2", typingColorClass].join(" ")}>
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden
+                            className="shrink-0"
+                          >
+                            <circle cx="6" cy="12" r="2" fill="currentColor">
+                              <animate
+                                attributeName="opacity"
+                                values="0.25;1;0.25"
+                                dur="1s"
+                                repeatCount="indefinite"
+                                begin="0s"
+                              />
+                            </circle>
+                            <circle cx="12" cy="12" r="2" fill="currentColor">
+                              <animate
+                                attributeName="opacity"
+                                values="0.25;1;0.25"
+                                dur="1s"
+                                repeatCount="indefinite"
+                                begin="0.15s"
+                              />
+                            </circle>
+                            <circle cx="18" cy="12" r="2" fill="currentColor">
+                              <animate
+                                attributeName="opacity"
+                                values="0.25;1;0.25"
+                                dur="1s"
+                                repeatCount="indefinite"
+                                begin="0.3s"
+                              />
+                            </circle>
+                          </svg>
+                          <span className="italic">{typingText}</span>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -106,9 +197,9 @@ export default function ChatUI({
               </div>
 
               {/* Prompt chips */}
-              {promptItems.length > 0 && (
+              {showPrompts && visiblePrompts.length > 0 && (
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {promptItems.map((item) => (
+                  {visiblePrompts.map((item) => (
                     <button
                       key={item.name}
                       type="button"
@@ -135,7 +226,7 @@ export default function ChatUI({
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask about onboarding, CMS sync, analytics..."
+                  placeholder="Did you clear cache before typing?"
                   className="w-full rounded-md border border-border/60 bg-background/40 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
                 <button

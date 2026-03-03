@@ -26,7 +26,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
   const MailIcon = iconMap.Mail;
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <section className="min-h-[100svh] md:min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20">
       {/* Solaïs-inspired backdrop (keeps your theme tokens) */}
       <div aria-hidden className="absolute inset-0 bg-gradient-subtle" />
       <div aria-hidden className="absolute inset-0 solais-sweep opacity-70" />
@@ -43,7 +43,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
       <div aria-hidden className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/6 rounded-full blur-3xl" />
       <div aria-hidden className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/4 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-6 relative z-10 max-md:my-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-md:my-10">
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 items-center">
           {/* Left: Hero copy */}
           <div className="max-w-3xl text-center md:text-left">
@@ -102,7 +102,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
             {/* Quick Stats */}
             <div
-              className="grid grid-cols-3 gap-8 max-w-lg mt-16 pt-8 border-t border-border animate-fade-up"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 max-w-lg mt-12 sm:mt-16 pt-8 border-t border-border animate-fade-up"
               style={{ animationDelay: '0.3s' }}
             >
               {stats.map((stat, index) => (
