@@ -28,7 +28,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
   return (
     <section className="min-h-[100svh] md:min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20">
       {/* Solaïs-inspired backdrop (keeps your theme tokens) */}
-      <div aria-hidden className="absolute inset-0 bg-gradient-subtle" />
+      {/* <div aria-hidden className="absolute inset-0 bg-gradient-subtle" />
       <div aria-hidden className="absolute inset-0 solais-sweep opacity-70" />
       <div
         aria-hidden
@@ -38,7 +38,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
           "[transform:perspective(900px)_rotateX(66deg)]",
           "[mask-image:radial-gradient(closest-side,black,transparent)]",
         ].join(" ")}
-      />
+      /> */}
       <div aria-hidden className="absolute inset-0 solais-vignette opacity-70" />
       <div aria-hidden className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/6 rounded-full blur-3xl" />
       <div aria-hidden className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/4 rounded-full blur-3xl" />
@@ -48,15 +48,15 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
           {/* Left: Hero copy */}
           <div className="max-w-3xl text-center md:text-left">
             {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border mb-8 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border mb-6 md:mb-8 animate-fade-in">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse-glow" />
-              <span className="text-sm text-muted-foreground">
+              <span className="text-xs md:text-sm text-muted-foreground">
                 {statusBadge}
               </span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.98] text-foreground mb-6 animate-fade-up">
+            <h1 className="text-3xl md:text-6xl font-extrabold tracking-tight md:leading-[70px] text-foreground mb-6 animate-fade-up">
               {headline.text}{' '}
               <span className="text-gradient">{headline.highlight}</span>
               <br />
@@ -65,7 +65,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
             {/* Sub-headline */}
             <p
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-fade-up"
+              className="text-md md:text-xl text-muted-foreground max-w-2xl mb-4 md:mb-10 animate-fade-up"
               style={{ animationDelay: '0.1s' }}
             >
               {subheadline}
@@ -73,7 +73,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
             {/* CTA Buttons */}
             <div
-              className="flex flex-col sm:flex-row items-center sm:items-stretch justify-start gap-4 animate-fade-up"
+              className="flex flex-col sm:flex-row items-center sm:items-stretch justify-start gap-4 animate-fade-up max-md:hidden"
               style={{ animationDelay: '0.2s' }}
             >
               {ctaButtons.map((button, index) => {
@@ -86,7 +86,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
                     className={
                       button.variant === 'primary'
                         ? 'bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-hover px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase'
-                        : 'border-border/70 bg-background/20 hover:bg-secondary/40 px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase backdrop-blur'
+                        : 'border-border/70 bg-background/20 hover:bg-secondary/40 hover:text-primary px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase backdrop-blur'
                     }
                     asChild
                   >
@@ -102,7 +102,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
             {/* Quick Stats */}
             <div
-              className="grid grid-cols-3 gap-4 sm:gap-8 max-w-lg mt-12 sm:mt-16 pt-8 border-t border-border animate-fade-up"
+              className="grid grid-cols-3 gap-4 sm:gap-8 max-w-lg mt-4 md:mt-12 pt-4 md:pt-8 border-t border-border animate-fade-up"
               style={{ animationDelay: '0.3s' }}
             >
               {stats.map((stat, index) => (

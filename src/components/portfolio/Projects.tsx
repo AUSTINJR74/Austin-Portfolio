@@ -34,7 +34,7 @@ export const Projects = ({ sectionLabel, title, description, items }: ProjectsPr
               return (
                 <article
                   key={index}
-                  className="group p-8 rounded-xl solais-glass hover:shadow-elevated transition-all duration-300"
+                  className="group p-6 md:p-8 rounded-xl solais-glass hover:shadow-elevated transition-all duration-300"
                 >
                   <div className="flex flex-col lg:flex-row gap-8">
                     {/* Left - Icon & Title */}
