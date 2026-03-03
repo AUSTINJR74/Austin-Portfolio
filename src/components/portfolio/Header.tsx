@@ -25,9 +25,9 @@ export const Header = ({ navLinks }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 max-md:bg-background/80 max-md:backdrop-blur-lg max-md:border-b max-md:border-border ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 max-md:bg-background/70 max-md:backdrop-blur-xl max-md:border-b max-md:border-border/60 ${
         isScrolled
-          ? 'md:bg-background/80 md:backdrop-blur-lg md:border-b md:border-border'
+          ? 'md:bg-background/70 md:backdrop-blur-xl md:border-b md:border-border/60'
           : 'bg-transparent'
       }`}
     >
@@ -42,15 +42,21 @@ export const Header = ({ navLinks }: HeaderProps) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+            <div className="flex items-center gap-3 font-mono text-xs tracking-[0.22em] uppercase">
+              {navLinks.map((link, idx) => (
+                <div key={link.href} className="flex items-center gap-3">
+                  <a
+                    href={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                  {idx < navLinks.length - 1 ? (
+                    <span className="text-muted-foreground/60">/</span>
+                  ) : null}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Theme Toggle & Mobile Menu */}

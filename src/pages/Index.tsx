@@ -11,9 +11,14 @@ import portfolioData from '@/data/portfolio-data.json';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header navLinks={portfolioData.header.navLinks} />
-      <main>
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-subtle" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.06]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
+
+      <div className="relative z-10">
+        <Header navLinks={portfolioData.header.navLinks} />
+        <main>
         <Hero
           statusBadge={portfolioData.hero.statusBadge}
           headline={portfolioData.hero.headline}
@@ -60,7 +65,8 @@ const Index = () => {
           socialLinks={portfolioData.footer.socialLinks}
           copyright={portfolioData.footer.copyright}
         />
-      </main>
+        </main>
+      </div>
     </div>
   );
 };

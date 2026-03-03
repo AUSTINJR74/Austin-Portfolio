@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { iconMap } from '@/lib/icon-map';
+import { SectionHeader } from '@/components/portfolio/SectionHeader';
 
 interface FooterProps {
   sectionLabel: string;
@@ -9,7 +10,7 @@ interface FooterProps {
     icon: string;
     label: string;
     href: string;
-    username: string;
+    username?: string;
   }>;
   copyright: string;
 }
@@ -18,27 +19,30 @@ export const Footer = ({ sectionLabel, title, description, socialLinks, copyrigh
   const ArrowUpRightIcon = iconMap.ArrowUpRight;
 
   return (
-    <footer id="contact" className="py-24 md:py-32 border-t border-border">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center">
+    <footer id="contact" className="relative overflow-hidden py-24 md:py-32 border-t border-border">
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-60" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.10]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-4xl mx-auto ">
           {/* CTA Section */}
-          <span className="text-primary font-mono text-sm tracking-wider uppercase">{sectionLabel}</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6">
-            {title}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-10">
-            {description}
-          </p>
+          <SectionHeader
+            label={sectionLabel}
+            title={title}
+            description={description}
+            className="text-left sm:"
+          />
 
           {/* Social Links */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
             {socialLinks.map((link, index) => {
               const Icon = iconMap[link.icon as keyof typeof iconMap];
               return (
                 <Button
                   key={index}
                   variant="outline"
-                  className="w-full sm:w-auto px-6 py-6 justify-between sm:justify-center gap-3 group"
+                  className="w-full sm:w-auto px-6 py-6 justify-between sm:justify-center gap-3 group solais-glass hover:shadow-elevated"
                   asChild
                 >
                   <a href={link.href} target="_blank" rel="noopener noreferrer">

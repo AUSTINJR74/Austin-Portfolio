@@ -27,10 +27,21 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-subtle" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
+      {/* Solaïs-inspired backdrop (keeps your theme tokens) */}
+      <div aria-hidden className="absolute inset-0 bg-gradient-subtle" />
+      <div aria-hidden className="absolute inset-0 solais-sweep opacity-70" />
+      <div
+        aria-hidden
+        className={[
+          "pointer-events-none absolute left-1/2 top-0 h-[900px] w-[1400px] -translate-x-1/2",
+          "origin-top solais-grid opacity-[0.18]",
+          "[transform:perspective(900px)_rotateX(66deg)]",
+          "[mask-image:radial-gradient(closest-side,black,transparent)]",
+        ].join(" ")}
+      />
+      <div aria-hidden className="absolute inset-0 solais-vignette opacity-70" />
+      <div aria-hidden className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/6 rounded-full blur-3xl" />
+      <div aria-hidden className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/4 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-6 relative z-10 max-md:my-10">
         <div className="grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 items-center">
@@ -45,7 +56,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 animate-fade-up">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[0.98] text-foreground mb-6 animate-fade-up">
               {headline.text}{' '}
               <span className="text-gradient">{headline.highlight}</span>
               <br />
@@ -74,8 +85,8 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
                     variant={button.variant === 'primary' ? 'default' : 'outline'}
                     className={
                       button.variant === 'primary'
-                        ? 'bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-hover px-8 py-6 text-base font-semibold'
-                        : 'border-border hover:bg-secondary px-8 py-6 text-base font-semibold'
+                        ? 'bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-hover px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase'
+                        : 'border-border/70 bg-background/20 hover:bg-secondary/40 px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase backdrop-blur'
                     }
                     asChild
                   >

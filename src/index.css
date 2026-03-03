@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,8 +7,6 @@
 /* Austin Jose R Portfolio - Design System
    FAANG-style, minimal, performance-focused
    All colors in HSL */
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {
@@ -188,5 +188,29 @@
   /* Code/mono styling */
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Solaïs-inspired surfaces (uses existing theme tokens) */
+  .solais-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
+    background-size: 72px 72px;
+    background-position: center;
+  }
+
+  .solais-vignette {
+    background:
+      radial-gradient(1200px circle at 20% 10%, transparent 0%, hsl(var(--background) / 0.35) 55%, hsl(var(--background)) 100%);
+  }
+
+  .solais-sweep {
+    background:
+      radial-gradient(900px circle at 70% 35%, hsl(var(--primary) / 0.18), transparent 60%),
+      linear-gradient(120deg, transparent 0%, hsl(var(--primary) / 0.09) 45%, transparent 100%);
+  }
+
+  .solais-glass {
+    @apply border border-border/60 bg-card/40 backdrop-blur shadow-elevated;
   }
 }

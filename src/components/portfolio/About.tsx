@@ -1,5 +1,6 @@
 import { iconMap } from '@/lib/icon-map';
 import austinImg from '@/assets/austin.jpeg';
+import { SectionHeader } from '@/components/portfolio/SectionHeader';
 
 interface AboutProps {
   sectionLabel: string;
@@ -14,8 +15,11 @@ interface AboutProps {
 
 export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProps) => {
   return (
-    <section id="about" className="py-24 md:py-32">
-      <div className="container mx-auto px-6">
+    <section id="about" className="relative overflow-hidden py-24 md:py-32">
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.10]" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
+
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.1fr)] gap-8 items-start">
             {/* Left Column - Photo */}
@@ -32,14 +36,7 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
 
             {/* Right Column - About Text and Highlights */}
             <div className="space-y-10">
-
-               {/* Section Header */}
-              <div className="mb-4">
-                <span className="text-primary font-mono text-sm tracking-wider uppercase">{sectionLabel}</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2">
-                  {title}
-                </h2>
-              </div>
+              <SectionHeader label={sectionLabel} title={title} className="mb-4 md:mb-6" />
 
               <div className="space-y-6">
                 {paragraphs.map((paragraph, index) => (
@@ -58,7 +55,7 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
                   return (
                     <div
                       key={index}
-                      className="p-6 rounded-lg bg-card border border-border shadow-card hover:shadow-elevated transition-shadow duration-300"
+                      className="p-6 rounded-lg solais-glass hover:shadow-elevated transition-shadow duration-300"
                     >
                       {Icon && <Icon className="w-8 h-8 text-primary mb-4" />}
                       <h3 className="text-lg font-semibold text-foreground mb-2">
