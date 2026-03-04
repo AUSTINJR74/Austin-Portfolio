@@ -65,7 +65,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
 
             {/* Sub-headline */}
             <p
-              className="text-md md:text-xl text-muted-foreground max-w-2xl mb-4 md:mb-10 animate-fade-up"
+              className="text-sm md:text-xl text-muted-foreground max-w-2xl mb-4 md:mb-10 animate-fade-up"
               style={{ animationDelay: '0.1s' }}
             >
               {subheadline}
