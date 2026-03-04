@@ -14,8 +14,8 @@
         "variant": "primary"
       },
       {
-        "label": "Get in Touch",
-        "href": "#contact",
+        "label": "Hire Me",
+        "href": "https://drive.google.com/file/d/1p427Fl0kd6VJVzCzsve2MF3M_iTPph0b/view?usp=sharing",
         "variant": "outline"
       }
     ],
@@ -249,11 +249,24 @@
   },
   "devPipeline": {
     "backgroundWords": ["Code", "Ship", "Deploy"],
+    "randomNames": [
+      "Sanjay K", "Sanjay S", "Poovarasan", "Madesh", "Harrish", "Rengaraj", "Nithiya Girishon",
+      "Naresh", "Sheshadri", "Shiva Dharshan", "Janarthanan", "Vinoth", "Austin", "Mubarak",
+      "Hariharan", "Vishnu"
+    ],
     "nameInput": {
       "label": "Before we begin...",
       "title": "What should I call you?",
       "placeholder": "Enter Your Name",
-      "hint": "Scroll down to continue"
+      "hint": "Scroll down to continue",
+      "aiHelper": {
+        "buttonText": "Pick One For Me",
+        "generatedText": "Perfect. I'll call you {name}"
+      },
+      "error": {
+        "title": "Authentication Required",
+        "message": "Please enter your name to continue."
+      }
     },
     "vsCodeEditor": {
       "titleBarLabel": "Welcome.tsx — portfolio",

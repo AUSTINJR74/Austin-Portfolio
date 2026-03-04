@@ -23,7 +23,7 @@ interface HeroProps {
 
 export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: HeroProps) => {
   const ArrowRightIcon = iconMap.ArrowRight;
-  const MailIcon = iconMap.Mail;
+  const BriefcaseIcon = iconMap.Briefcase;
 
   return (
     <section className="min-h-[100svh] md:min-h-screen flex items-center justify-center relative overflow-hidden pt-16 sm:pt-20">
@@ -77,7 +77,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
               style={{ animationDelay: '0.2s' }}
             >
               {ctaButtons.map((button, index) => {
-                const Icon = index === 0 ? ArrowRightIcon : MailIcon;
+                const Icon = index === 0 ? ArrowRightIcon : BriefcaseIcon;
                 return (
                   <Button
                     key={index}
@@ -90,7 +90,7 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
                     }
                     asChild
                   >
-                    <a href={button.href}>
+                    <a href={button.href} target="_blank">
                       {button.variant === 'outline' && <Icon className="mr-2 h-5 w-5" />}
                       {button.label}
                       {button.variant === 'primary' && <Icon className="ml-2 h-5 w-5" />}

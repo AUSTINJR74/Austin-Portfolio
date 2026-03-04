@@ -18,7 +18,8 @@ import {
   Linkedin,
   Github,
   MessageCircle,
-  MessagesSquare
+  MessagesSquare,
+  Briefcase
 } from 'lucide-react';
 
 export const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -41,5 +42,6 @@ export const iconMap: Record<string, React.ComponentType<{ className?: string }>
   Linkedin,
   Github,
   MessageCircle,
+  Briefcase,
   WhatsApp: MessagesSquare,
 };

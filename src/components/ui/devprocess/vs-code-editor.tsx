@@ -63,20 +63,17 @@ const VSCodeEditor = ({ userName, onNameChange, data }: { userName: string; onNa
             <div className="flex-1">
               <div><span style={{ color: '#c586c0' }}>import</span> <span style={{ color: '#9cdcfe' }}>React</span> <span style={{ color: '#c586c0' }}>from</span> <span style={{ color: '#ce9178' }}>'react'</span><span style={{ color: '#d4d4d4' }}>;</span></div>
               <div>&nbsp;</div>
-              <div><span style={{ color: '#6a9955' }}>{'// Enter your name below'}</span></div>
-              <div>
+                  <div>
                 <span style={{ color: '#569cd6' }}>const</span>{' '}
                 <span style={{ color: '#4fc1ff' }}>userName</span>{' '}
                 <span style={{ color: '#d4d4d4' }}>=</span>{' '}
                 <span style={{ color: '#ce9178' }}>"</span>
-                <input
-                  type="text"
-                  value={userName}
-                  onChange={(e) => onNameChange(e.target.value)}
-                  placeholder={data.inputPlaceholder}
-                  className="bg-transparent border-none outline-none text-[#ce9178] font-mono w-20 sm:w-32 placeholder:text-[#ce9178]/30 caret-[#aeafad]"
-                  style={{ fontSize: 'inherit', lineHeight: '1.6', padding: 0 }}
-                />
+                <span className="cursor-pointer hover:underline" 
+                onClick={() => {
+                    window.scrollTo({ top: 1200, behavior: 'smooth' });
+                }} style={{ color: '#ce9178' }}>
+                    {userName || data.inputPlaceholder}
+                </span>
                 <span style={{ color: '#ce9178' }}>"</span><span style={{ color: '#d4d4d4' }}>;</span>
               </div>
               <div>&nbsp;</div>

@@ -8,21 +8,13 @@ import portfolioData from '@/data/portfolio-data.json';
 
 const { devPipeline } = portfolioData;
 
-const RANDOM_NAMES = [
-  'Alex Morgan', 'Jordan Taylor', 'Casey Parker', 'Riley Carter', 'Avery Collins',
-  'Jamie Brooks', 'Cameron Reed', 'Quinn Harper', 'Taylor Bennett', 'Morgan Hayes',
-  'Rowan Mitchell', 'Parker Ellis', 'Hayden Foster', 'Reese Walker', 'Charlie Dawson',
-  'Sage Turner', 'Finley Brooks', 'Emerson Clarke', 'River Bennett', 'Phoenix Carter',
-  'Drew Sullivan', 'Blake Morgan', 'Robin Hayes', 'Ellis Parker', 'Remy Lawson',
-  'Lennon Shaw', 'Marley Quinn', 'Sam Walker', 'Dakota Hayes', 'Skyler Bennett',
-];
-
 /* ─── Main ScrollShowcase Component ─── */
 export const ScrollShowcase = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [pin, setPin] = useState<'before' | 'pinned' | 'after'>('before');
   const [userName, setUserName] = useState('');
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -35,6 +27,18 @@ export const ScrollShowcase = () => {
         const vh = window.innerHeight;
         const scrollable = rect.height - vh;
         if (scrollable <= 0) { ticking = false; return; }
+        
+        // Calculate progress to check if we're past name input stage
+        const currentProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
+        
+        // Prevent scrolling past name input stage if no name entered
+        if (!userName.trim() && currentProgress > 0.18) {
+          window.scrollTo({ top: window.scrollY + rect.top + 150, behavior: 'smooth' });
+          setShowError(true);
+          ticking = false;
+          return;
+        }
+        
         setProgress(Math.max(0, Math.min(1, -rect.top / scrollable)));
         if (rect.top > 0) setPin('before');
         else if (rect.bottom <= vh) setPin('after');
@@ -42,10 +46,17 @@ export const ScrollShowcase = () => {
         ticking = false;
       });
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: false });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [userName]);
+
+  // Hide error when user enters a name
+  useEffect(() => {
+    if (userName.trim()) {
+      setShowError(false);
+    }
+  }, [userName]);
 
   const fade = (start: number, end: number) => {
     if (progress < start || progress > end) return 0;
@@ -121,13 +132,13 @@ export const ScrollShowcase = () => {
               </div>
               <button
                 onClick={() => {
-                  const name = RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)];
+                  const name = devPipeline.randomNames[Math.floor(Math.random() * devPipeline.randomNames.length)];
                   setUserName(name);
                 }}
                 className="relative px-4 py-2 rounded-md text-[13px] font-mono font-medium transition-all duration-300 border border-primary bg-primary text-primary-foreground hover:shadow-[0_0_20px_hsl(var(--primary)/0.6),0_0_40px_hsl(var(--primary)/0.4)]"
               >
                 <span className="relative flex items-center gap-2 z-10">
-                  Pick One For Me
+                  {devPipeline.nameInput.aiHelper.buttonText}
                 </span>
               </button>
               {userName && (
@@ -137,10 +148,21 @@ export const ScrollShowcase = () => {
                     animation: 'glow 2s ease-in-out infinite alternate',
                     textShadow: '0 0 10px rgba(102, 126, 234, 0.5)'
                   }}>
-                  Perfect. I’ll call you {userName}
+                  {devPipeline.nameInput.aiHelper.generatedText.replace('{name}', userName)}
                 </div>
               )}
-            </div>
+              {showError && !userName && (
+                <div className="mt-4 animate-slide-down">
+                  <div className="bg-destructive/20 border border-destructive rounded-full px-6 py-2 flex items-center gap-3 shadow-lg mx-auto max-w-sm">
+                    <div className="text-destructive text-lg shrink-0">⚠️</div>
+                      <p className="text-sm font-mono font-semibold text-foreground">{devPipeline.nameInput.error.title}</p>
+                  </div>
+                      <p className="text-xs font-mono text-muted-foreground mt-4">
+                        {devPipeline.nameInput.error.message}
+                      </p>
+                </div>
+              )}
+              </div>
           </div>
         </div>
 
@@ -174,6 +196,7 @@ export const ScrollShowcase = () => {
           <LandingPage displayName={displayName} data={devPipeline.landingPage} />
         </div>
 
+        
         {/* Scroll hint chip */}
         {pin === 'pinned' && progress < 0.72 && (progress > 0.15 || userName.trim().length > 0) && (
           <div className="fixed bottom-8 left-0 right-0 z-50 animate-bounce flex justify-center max-md:px-4">
