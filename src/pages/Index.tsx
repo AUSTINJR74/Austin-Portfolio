@@ -7,7 +7,7 @@ import { Skills } from '@/components/portfolio/Skills';
 import { Achievements } from '@/components/portfolio/Achievements';
 import { Education } from '@/components/portfolio/Education';
 import { Footer } from '@/components/portfolio/Footer';
-import { ScrollShowcase } from '@/components/portfolio/ScrollShowcase';
+import { ScrollShowcase } from '@/components/portfolio/DevPipelineShowcase';
 import portfolioData from '@/data/portfolio-data.json';
 
 const Index = () => {
@@ -27,10 +27,7 @@ const Index = () => {
           ctaButtons={portfolioData.hero.ctaButtons}
           stats={portfolioData.hero.stats}
         />
-        <ScrollShowcase
-          backgroundText={portfolioData.scrollShowcase.backgroundText}
-          phases={portfolioData.scrollShowcase.phases}
-        />
+        <ScrollShowcase />
         <About
           sectionLabel={portfolioData.about.sectionLabel}
           title={portfolioData.about.title}
