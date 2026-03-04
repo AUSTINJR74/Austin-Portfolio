@@ -214,4 +214,29 @@
   .solais-glass {
     @apply border border-border/60 bg-card/40 backdrop-blur shadow-elevated;
   }
+
+  /* Skills card theme-aware colors */
+  .skill-card-heading {
+    color: var(--heading-light);
+  }
+  .dark .skill-card-heading {
+    color: var(--heading-dark);
+  }
+
+  .skill-card-tag {
+    color: var(--tag-light);
+  }
+  .dark .skill-card-tag {
+    color: var(--tag-dark);
+  }
+
+  /* Floating skill icons — uniform gray */
+  .skill-float-icon {
+    opacity: 0.09;
+    filter: grayscale(1) brightness(0.4) contrast(0.8);
+  }
+  .dark .skill-float-icon {
+    opacity: 0.14;
+    filter: grayscale(1) brightness(1.8) contrast(0.6);
+  }
 }
