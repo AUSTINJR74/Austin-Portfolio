@@ -1,5 +1,5 @@
 import { iconMap } from '@/lib/icon-map';
-import austinImg from '@/assets/austin.jpeg';
+import austinImg from '@/assets/austin_dp.jpeg';
 import { SectionHeader } from '@/components/portfolio/SectionHeader';
 
 interface AboutProps {
