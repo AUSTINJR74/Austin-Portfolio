@@ -1,4 +1,3 @@
-import { iconMap } from '@/lib/icon-map';
 import { SectionHeader } from '@/components/portfolio/SectionHeader';
 
 interface AchievementsProps {
@@ -24,26 +23,42 @@ export const Achievements = ({ sectionLabel, title, items }: AchievementsProps) 
           <SectionHeader label={sectionLabel} title={title} />
 
           {/* Achievements Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
             {items.map((achievement, index) => {
-              const Icon = iconMap[achievement.icon as keyof typeof iconMap];
+              const step = String(index + 1).padStart(2, '0');
               return (
                 <div
                   key={index}
-                  className="group p-6 rounded-xl solais-glass hover:shadow-elevated hover:border-primary/30 transition-all duration-300"
+                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 backdrop-blur shadow-card p-7 md:p-9 transition-all duration-300 hover:shadow-elevated hover:-translate-y-1 hover:border-primary/40"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    {Icon && <Icon className="w-5 h-5 text-primary" />}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{ background: 'radial-gradient(900px circle at 70% 35%, hsl(var(--primary) / 0.22), transparent 60%)' }}
+                  />
+
+                  <div className="relative">
+                    <div className="text-md md:text-lg font-semibold tracking-[0.22em] uppercase text-primary/80">
+                      {achievement.metric}
+                    </div>
+
+                    <div
+                      aria-hidden
+                      className="absolute right-0 top-0 -translate-y-6 text-[96px] md:text-[120px] font-extrabold tracking-tight text-foreground/5 transition-opacity duration-300 group-hover:text-foreground/10"
+                    >
+                      {step}
+                    </div>
+
+                    <h3 className="mt-4 text-2xl md:text-3xl font-semibold text-foreground">
+                      {achievement.label}
+                    </h3>
+
+                    <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed max-w-[54ch]">
+                      {achievement.description}
+                    </p>
+
+                    <div className="mt-6 h-px w-10 bg-primary/70" />
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
-                    {achievement.metric}
-                  </div>
-                  <h3 className="text-base font-semibold text-foreground mb-2">
-                    {achievement.label}
-                  </h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {achievement.description}
-                  </p>
                 </div>
               );
             })}
