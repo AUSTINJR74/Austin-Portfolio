@@ -8,6 +8,15 @@ import portfolioData from '@/data/portfolio-data.json';
 
 const { devPipeline } = portfolioData;
 
+const RANDOM_NAMES = [
+  'Alex Morgan', 'Jordan Taylor', 'Casey Parker', 'Riley Carter', 'Avery Collins',
+  'Jamie Brooks', 'Cameron Reed', 'Quinn Harper', 'Taylor Bennett', 'Morgan Hayes',
+  'Rowan Mitchell', 'Parker Ellis', 'Hayden Foster', 'Reese Walker', 'Charlie Dawson',
+  'Sage Turner', 'Finley Brooks', 'Emerson Clarke', 'River Bennett', 'Phoenix Carter',
+  'Drew Sullivan', 'Blake Morgan', 'Robin Hayes', 'Ellis Parker', 'Remy Lawson',
+  'Lennon Shaw', 'Marley Quinn', 'Sam Walker', 'Dakota Hayes', 'Skyler Bennett',
+];
+
 /* ─── Main ScrollShowcase Component ─── */
 export const ScrollShowcase = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -40,11 +49,12 @@ export const ScrollShowcase = () => {
 
   const fade = (start: number, end: number) => {
     if (progress < start || progress > end) return 0;
-    const mid = (start + end) / 2;
-    const half = (end - start) / 2;
-    return progress < mid
-      ? Math.min(1, (progress - start) / (half * 0.5))
-      : Math.max(0, 1 - (progress - mid) / (half * 0.5));
+    const range = end - start;
+    const inEnd = start + range * 0.15;
+    const outStart = end - range * 0.15;
+    if (progress < inEnd) return (progress - start) / (range * 0.15);
+    if (progress > outStart) return (end - progress) / (range * 0.15);
+    return 1;
   };
 
   const s0 = fade(0, 0.18);
@@ -62,9 +72,9 @@ export const ScrollShowcase = () => {
     { prompt: devPipeline.terminal.prompt, cmd: `git commit -m "${displayName}"` },
     { prompt: devPipeline.terminal.prompt, cmd: `git push origin ${branchName}` },
   ];
-  const termProgress = Math.max(0, Math.min(1, (progress - 0.28) / 0.18));
-  const prProgress = Math.max(0, Math.min(1, (progress - 0.42) / 0.18));
-  const buildProgress = Math.max(0, Math.min(1, (progress - 0.56) / 0.20));
+  const termProgress = Math.max(0, Math.min(1, (progress - 0.28) / 0.13));
+  const prProgress = Math.max(0, Math.min(1, (progress - 0.42) / 0.13));
+  const buildProgress = Math.max(0, Math.min(1, (progress - 0.56) / 0.15));
 
   const pinStyle: React.CSSProperties =
     pin === 'pinned'
@@ -94,7 +104,7 @@ export const ScrollShowcase = () => {
 
         {/* Stage 0: Name Input */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
-          style={{ opacity: s0, transform: `scale(${0.92 + s0 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s0 > 0.3 ? 'auto' : 'none', backdropFilter: s0 > 0 ? `blur(${s0 * 12}px)` : 'none', WebkitBackdropFilter: s0 > 0 ? `blur(${s0 * 12}px)` : 'none' }}>
+          style={{ opacity: s0, transform: `scale(${0.92 + s0 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s0 > 0.3 ? 'auto' : 'none', backdropFilter: s0 > 0 ? `blur(${s0 * 20}px)` : 'none', WebkitBackdropFilter: s0 > 0 ? `blur(${s0 * 20}px)` : 'none' }}>
           <div className="w-full max-w-md text-center">
             <div className="text-sm font-mono tracking-widest uppercase mb-4" style={{ color: 'var(--foreground)', opacity: 0.5 }}>{devPipeline.nameInput.label}</div>
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-6" style={{ color: 'var(--foreground)' }}>{devPipeline.nameInput.title}</h2>
@@ -103,9 +113,34 @@ export const ScrollShowcase = () => {
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
               placeholder={devPipeline.nameInput.placeholder}
-              className="w-full max-w-xs mx-auto block px-4 py-3 rounded-lg border border-[#30363d] bg-[#0d1117] text-white text-center text-lg font-mono placeholder:text-[#484f58] focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
+              className="w-full max-w-xs mx-auto block px-4 py-3 rounded-lg border border-border bg-background text-foreground text-center text-lg font-mono placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-transparent"
             />
-            <p className="text-xs mt-3 font-mono" style={{ color: 'var(--foreground)', opacity: 0.35 }}>{devPipeline.nameInput.hint}</p>
+            <div className="flex flex-col items-center gap-4 md:gap-6 mt-6">
+              <div className="text-[11px] font-mono text-center" style={{ color: 'var(--foreground)'}}>
+                or let <img src="/asjs_bot.png" alt="ASJS" className="h-10 w-auto inline-block" /> pick a cool name for you.
+              </div>
+              <button
+                onClick={() => {
+                  const name = RANDOM_NAMES[Math.floor(Math.random() * RANDOM_NAMES.length)];
+                  setUserName(name);
+                }}
+                className="relative px-4 py-2 rounded-md text-[13px] font-mono font-medium transition-all duration-300 border border-primary bg-primary text-primary-foreground hover:shadow-[0_0_20px_hsl(var(--primary)/0.6),0_0_40px_hsl(var(--primary)/0.4)]"
+              >
+                <span className="relative flex items-center gap-2 z-10">
+                  Pick One For Me
+                </span>
+              </button>
+              {userName && (
+                <div className="text-[15px] font-mono font-semibold text-center animate-fade-in mt-5"
+                  style={{ 
+                    color: 'var(--foreground)', 
+                    animation: 'glow 2s ease-in-out infinite alternate',
+                    textShadow: '0 0 10px rgba(102, 126, 234, 0.5)'
+                  }}>
+                  Perfect. I’ll call you {userName}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -138,6 +173,20 @@ export const ScrollShowcase = () => {
           style={{ opacity: s5, transform: `translateY(${(1 - s5) * 50}px)`, willChange: 'transform, opacity', pointerEvents: s5 > 0.3 ? 'auto' : 'none' }}>
           <LandingPage displayName={displayName} data={devPipeline.landingPage} />
         </div>
+
+        {/* Scroll hint chip */}
+        {pin === 'pinned' && progress < 0.72 && (progress > 0.15 || userName.trim().length > 0) && (
+          <div className="fixed bottom-8 left-0 right-0 z-50 animate-bounce flex justify-center max-md:px-4">
+            <div className="px-4 py-2 rounded-full text-[12px] sm:text-[13px] font-mono font-medium shadow-lg flex items-center gap-2"
+              style={{ background: 'rgba(239, 68, 68, 0.7)', backdropFilter: 'blur(8px)', color: '#fff' }}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 animate-pulse">
+                <path d="M7 1L7 10M7 10L3.5 6.5M7 10L10.5 6.5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M2 13H12" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              Scroll down to deploy the application
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -61,7 +61,7 @@ export const Header = ({ navLinks }: HeaderProps) => {
 
           {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={toggleTheme}
@@ -72,7 +72,7 @@ export const Header = ({ navLinks }: HeaderProps) => {
               ) : (
                 <Moon className="h-5 w-5" />
               )}
-            </Button>
+            </Button> */}
 
             <button
               className="md:hidden p-2 text-muted-foreground hover:text-foreground"

@@ -251,8 +251,8 @@
     "backgroundWords": ["Code", "Ship", "Deploy"],
     "nameInput": {
       "label": "Before we begin...",
-      "title": "What's your name?",
-      "placeholder": "Type your name...",
+      "title": "What should I call you?",
+      "placeholder": "Enter Your Name",
       "hint": "Scroll down to continue"
     },
     "vsCodeEditor": {
