@@ -4,6 +4,9 @@ import TerminalUI from '../ui/devprocess/terminal';
 import GitHubPR from '../ui/devprocess/github-pr';
 import BuildProcess from '../ui/devprocess/build-process';
 import LandingPage from '../ui/devprocess/landing';
+import portfolioData from '@/data/portfolio-data.json';
+
+const { devPipeline } = portfolioData;
 
 /* ─── Main ScrollShowcase Component ─── */
 export const ScrollShowcase = () => {
@@ -55,9 +58,9 @@ export const ScrollShowcase = () => {
   const branchName = `chore-${(userName || 'user').toLowerCase().replace(/\s+/g, '-')}/name-update`;
 
   const termLines = [
-    { prompt: '~/micro-frontend', cmd: 'git add .' },
-    { prompt: '~/micro-frontend', cmd: `git commit -m "${displayName}"` },
-    { prompt: '~/micro-frontend', cmd: `git push origin ${branchName}` },
+    { prompt: devPipeline.terminal.prompt, cmd: 'git add .' },
+    { prompt: devPipeline.terminal.prompt, cmd: `git commit -m "${displayName}"` },
+    { prompt: devPipeline.terminal.prompt, cmd: `git push origin ${branchName}` },
   ];
   const termProgress = Math.max(0, Math.min(1, (progress - 0.28) / 0.18));
   const prProgress = Math.max(0, Math.min(1, (progress - 0.42) / 0.18));
@@ -72,7 +75,6 @@ export const ScrollShowcase = () => {
 
   const bgScale = 1 + progress * 0.4;
   const bgOpacity = Math.max(0.03, 0.35 - progress * 0.5);
-  const bgWords = ['Code', 'Ship', 'Deploy'];
 
   return (
     <section ref={sectionRef} style={{ height: '800vh' }} className="relative">
@@ -84,7 +86,7 @@ export const ScrollShowcase = () => {
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
           style={{ transform: `scale(${bgScale})`, opacity: bgOpacity }}>
           <div className="text-center leading-[0.9]">
-            {bgWords.map((w, i) => (
+            {devPipeline.backgroundWords.map((w, i) => (
               <span key={i} className={`block text-[14vw] tracking-tighter text-foreground ${i % 2 === 1 ? 'font-extralight italic' : 'font-extrabold'}`}>{w}</span>
             ))}
           </div>
@@ -94,47 +96,47 @@ export const ScrollShowcase = () => {
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s0, transform: `scale(${0.92 + s0 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s0 > 0.3 ? 'auto' : 'none', backdropFilter: s0 > 0 ? `blur(${s0 * 12}px)` : 'none', WebkitBackdropFilter: s0 > 0 ? `blur(${s0 * 12}px)` : 'none' }}>
           <div className="w-full max-w-md text-center">
-            <div className="text-sm font-mono tracking-widest uppercase mb-4" style={{ color: 'var(--foreground)', opacity: 0.5 }}>Before we begin...</div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6" style={{ color: 'var(--foreground)' }}>What's your name?</h2>
+            <div className="text-sm font-mono tracking-widest uppercase mb-4" style={{ color: 'var(--foreground)', opacity: 0.5 }}>{devPipeline.nameInput.label}</div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-6" style={{ color: 'var(--foreground)' }}>{devPipeline.nameInput.title}</h2>
             <input
               type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-              placeholder="Type your name..."
+              placeholder={devPipeline.nameInput.placeholder}
               className="w-full max-w-xs mx-auto block px-4 py-3 rounded-lg border border-[#30363d] bg-[#0d1117] text-white text-center text-lg font-mono placeholder:text-[#484f58] focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent"
             />
-            <p className="text-xs mt-3 font-mono" style={{ color: 'var(--foreground)', opacity: 0.35 }}>Scroll down to continue</p>
+            <p className="text-xs mt-3 font-mono" style={{ color: 'var(--foreground)', opacity: 0.35 }}>{devPipeline.nameInput.hint}</p>
           </div>
         </div>
 
         {/* Stage 1: VS Code */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s1, transform: `scale(${0.92 + s1 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s1 > 0.3 ? 'auto' : 'none' }}>
-          <VSCodeEditor userName={userName} onNameChange={setUserName} />
+          <VSCodeEditor userName={userName} onNameChange={setUserName} data={devPipeline.vsCodeEditor} />
         </div>
 
         {/* Stage 2: Terminal */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s2, transform: `scale(${0.92 + s2 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s2 > 0.3 ? 'auto' : 'none' }}>
-          <TerminalUI lines={termLines} progress={termProgress} />
+          <TerminalUI lines={termLines} progress={termProgress} data={devPipeline.terminal} />
         </div>
 
         {/* Stage 3: GitHub PR */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s3, transform: `scale(${0.92 + s3 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s3 > 0.3 ? 'auto' : 'none' }}>
-          <GitHubPR branchName={branchName} displayName={displayName} progress={prProgress} />
+          <GitHubPR branchName={branchName} displayName={displayName} progress={prProgress} data={devPipeline.githubPR} />
         </div>
 
         {/* Stage 4: Build */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s4, transform: `scale(${0.92 + s4 * 0.08})`, willChange: 'transform, opacity', pointerEvents: s4 > 0.3 ? 'auto' : 'none' }}>
-          <BuildProcess progress={buildProgress} />
+          <BuildProcess progress={buildProgress} data={devPipeline.buildProcess} />
         </div>
 
         {/* Stage 5: Landing Page */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s5, transform: `translateY(${(1 - s5) * 50}px)`, willChange: 'transform, opacity', pointerEvents: s5 > 0.3 ? 'auto' : 'none' }}>
-          <LandingPage displayName={displayName} />
+          <LandingPage displayName={displayName} data={devPipeline.landingPage} />
         </div>
       </div>
     </section>

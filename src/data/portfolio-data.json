@@ -247,62 +247,82 @@
     ],
     "copyright": "Built with performance in mind. © {year} Austin Jose R"
   },
-  "scrollShowcase": {
-  "backgroundText": ["Sketch", "to", "Fetch"],
-  "phases": [
-    {
-      "type": "code",
-      "fileName": "App.tsx",
-      "code": "import { useEffect, useState } from \"react\";\n\nconst App = () => {\n  const [ready, setReady] = useState(false);\n\n  useEffect(() => {\n    setReady(true);\n  }, []);\n\n  if (!ready) return null;\n\n  return (\n    <Layout>\n      <Hero />\n      <About />\n      <Experience />\n      <Projects />\n    </Layout>\n  );\n};\n\nexport default App;"    
+  "devPipeline": {
+    "backgroundWords": ["Code", "Ship", "Deploy"],
+    "nameInput": {
+      "label": "Before we begin...",
+      "title": "What's your name?",
+      "placeholder": "Type your name...",
+      "hint": "Scroll down to continue"
     },
-    {
-      "type": "building",
-      "icon": "⚙️",
-      "title": "Turning Human Logic Into Machine Obedience",
-      "subtitle": "Compilers translating, bundlers packing, and a little faith in the build pipeline 🚀",
-      "bars": [
-        { "label": "Components negotiating hierarchy 🧩", "value": 100 },
-        { "label": "Styles achieving temporary peace 🎨", "value": 85 },
-        { "label": "Assets finding their folders 📦", "value": 70 },
-        { "label": "Network requests learning patience 🌐", "value": 90 },
-        { "label": "Bundle size going on a diet 🪶", "value": 80 }
+    "vsCodeEditor": {
+      "titleBarLabel": "Welcome.tsx — portfolio",
+      "activeTab": "Welcome.tsx",
+      "activityBarIcons": ["📁", "🔍", "⎇", "🐛", "⚙"],
+      "files": [
+        { "name": "src", "isDir": true, "indent": 0 },
+        { "name": "components", "isDir": true, "indent": 1 },
+        { "name": "Welcome.tsx", "isDir": false, "indent": 2, "active": true },
+        { "name": "App.tsx", "isDir": false, "indent": 1 },
+        { "name": "index.ts", "isDir": false, "indent": 1 },
+        { "name": "package.json", "isDir": false, "indent": 0 },
+        { "name": "tsconfig.json", "isDir": false, "indent": 0 }
+      ],
+      "lineCount": 12,
+      "inputPlaceholder": "type your name...",
+      "statusBar": {
+        "branch": "main",
+        "errors": "0 errors",
+        "language": "TypeScript React",
+        "languageShort": "TSX",
+        "encoding": "UTF-8"
+      }
+    },
+    "terminal": {
+      "titleLabel": "Terminal — zsh",
+      "prompt": "~/micro-frontend",
+      "gitOutput": [
+        "Enumerating objects: 5, done.",
+        "Counting objects: 100% (5/5), done.",
+        "Writing objects: 100% (3/3), 312 bytes | 312.00 KiB/s"
+      ],
+      "successMessage": "→ Branch pushed successfully!"
+    },
+    "githubPR": {
+      "repoName": "portfolio",
+      "checks": [
+        { "name": "CI / Build & Test", "pendingStatus": "Running..." },
+        { "name": "Lint & Type Check", "pendingStatus": "Queued" }
+      ],
+      "approvalLabel": "Approved",
+      "reviewer": "austin-jose reviewed and approved"
+    },
+    "buildProcess": {
+      "jobName": "build_push_deploy_to_k8s",
+      "steps": [
+        { "name": "Set up job", "time": "2s" },
+        { "name": "Checkout the repo", "time": "1s" },
+        { "name": "Set up Docker Buildx", "time": "5s" },
+        { "name": "Login to DockerHub", "time": "0s" },
+        { "name": "Build and push", "time": "3m 12s" },
+        { "name": "Checkout private tools", "time": "1s" },
+        { "name": "Kustomize Set Image", "time": "1s" },
+        { "name": "Post Checkout private tools", "time": "0s" },
+        { "name": "Post Build and push", "time": "0s" },
+        { "name": "Post Login to DockerHub", "time": "0s" },
+        { "name": "Post Set up Docker Buildx", "time": "4s" },
+        { "name": "Post Checkout the repo", "time": "0s" },
+        { "name": "Complete job", "time": "0s" }
       ]
     },
-    {
-      "type": "deployed",
-      "url": "https://vakilsearch.com",
-      "statusLabel": "Live (no console errors)",
-      "title": "From JSX to the Internet",
-      "subtitle": "A few thousand transforms later… it's now pixels, requests, and real users",
-      "images": [
-        "/projects/landing/page_1.png",
-        "/projects/landing/page_2.png",
-        "/projects/landing/page_3.png",
-        "/projects/landing/page_4.png",
-        "/projects/landing/page_5.png",
-        "/projects/landing/page_6.png",
-        "/projects/landing/page_7.png",
-        "/projects/landing/page_8.png",
-        "/projects/landing/page_9.png",
-        "/projects/landing/page_10.png",
-        "/projects/landing/page_11.png",
-        "/projects/landing/page_12.png",
-        "/projects/landing/page_13.png",
-        "/projects/landing/page_14.png",
-        "/projects/landing/page_15.png",
-        "/projects/landing/page_16.png",
-        "/projects/landing/page_17.png"
-      ]
-    },
-    {
-    "type": "impact",
-    "sectionLabel": "The Outcome",
-    "headline": "From Concept to",
-    "headlineHighlight": "Products People Actually Use",
-    "description": "Great software starts as structured thinking. With thoughtful engineering and careful optimization, those ideas become fast interfaces, resilient systems, and experiences people rely on every day."
-  }
-  ]
-},
+    "landingPage": {
+      "sectionLabel": "The Outcome",
+      "headline": "From Concept to ",
+      "headlineHighlight": "Products People Actually Use",
+      "description": "Great software starts as structured thinking. With thoughtful engineering and careful optimization, those ideas become fast interfaces, resilient systems, and experiences people rely on every day.",
+      "urlSuffix": ".in"
+    }
+  },
   "header": {
     "navLinks": [
       { "href": "#about", "label": "About" },

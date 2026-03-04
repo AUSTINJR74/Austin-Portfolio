@@ -1,21 +1,12 @@
 import BlueTick from "../blue-tick";
 
-const BuildProcess = ({ progress }: { progress: number }) => {
-  const steps = [
-    { name: 'Set up job', time: '2s' },
-    { name: 'Checkout the repo', time: '1s' },
-    { name: 'Set up Docker Buildx', time: '5s' },
-    { name: 'Login to DockerHub', time: '0s' },
-    { name: 'Build and push', time: '3m 12s' },
-    { name: 'Checkout private tools', time: '1s' },
-    { name: 'Kustomize Set Image', time: '1s' },
-    { name: 'Post Checkout private tools', time: '0s' },
-    { name: 'Post Build and push', time: '0s' },
-    { name: 'Post Login to DockerHub', time: '0s' },
-    { name: 'Post Set up Docker Buildx', time: '4s' },
-    { name: 'Post Checkout the repo', time: '0s' },
-    { name: 'Complete job', time: '0s' },
-  ];
+interface BuildProcessData {
+  jobName: string;
+  steps: { name: string; time: string }[];
+}
+
+const BuildProcess = ({ progress, data }: { progress: number; data: BuildProcessData }) => {
+  const { steps } = data;
   const completedCount = Math.floor(progress * (steps.length + 0.5));
 
   return (
@@ -23,7 +14,7 @@ const BuildProcess = ({ progress }: { progress: number }) => {
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b" style={{ background: '#1c2028', borderColor: '#30363d' }}>
         <div>
-          <div className="text-[14px] font-semibold" style={{ color: '#58a6ff' }}>build_push_deploy_to_k8s</div>        </div>
+          <div className="text-[14px] font-semibold" style={{ color: '#58a6ff' }}>{data.jobName}</div>        </div>
         <div className="flex items-center gap-3">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="#8b949e" className="cursor-default">
             <path d="M8 2a1 1 0 110 2 1 1 0 010-2zm0 5a1 1 0 110 2 1 1 0 010-2zm0 5a1 1 0 110 2 1 1 0 010-2z" />

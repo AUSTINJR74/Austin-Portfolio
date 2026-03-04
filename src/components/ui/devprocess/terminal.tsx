@@ -1,4 +1,10 @@
-const TerminalUI = ({ lines, progress }: { lines: { prompt: string; cmd: string }[]; progress: number }) => {
+interface TerminalData {
+  titleLabel: string;
+  gitOutput: string[];
+  successMessage: string;
+}
+
+const TerminalUI = ({ lines, progress, data }: { lines: { prompt: string; cmd: string }[]; progress: number; data: TerminalData }) => {
   const totalChars = lines.reduce((s, l) => s + l.cmd.length, 0);
   let charsDone = Math.floor(progress * totalChars);
 
@@ -10,7 +16,7 @@ const TerminalUI = ({ lines, progress }: { lines: { prompt: string; cmd: string 
           <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
           <div className="w-3 h-3 rounded-full bg-[#28C840]" />
         </div>
-        <span className="text-[11px] text-[#ccc]/60 font-mono">Terminal — zsh</span>
+        <span className="text-[11px] text-[#ccc]/60 font-mono">{data.titleLabel}</span>
       </div>
       <div className="p-4 font-mono text-[13px] leading-[1.8] min-h-[200px]">
         {lines.map((line, i) => {
@@ -29,10 +35,10 @@ const TerminalUI = ({ lines, progress }: { lines: { prompt: string; cmd: string 
               )} */}
               {done && i === lines.length - 1 && charsDone >= 0 && (
                 <div className="text-[#50fa7b] text-[12px] mt-1">
-                  <div>Enumerating objects: 5, done.</div>
-                  <div>Counting objects: 100% (5/5), done.</div>
-                  <div>Writing objects: 100% (3/3), 312 bytes | 312.00 KiB/s</div>
-                  <div className="text-[#f1fa8c] mt-1">→ Branch pushed successfully!</div>
+                  {data.gitOutput.map((line, j) => (
+                    <div key={j}>{line}</div>
+                  ))}
+                  <div className="text-[#f1fa8c] mt-1">{data.successMessage}</div>
                 </div>
               )}
             </div>
