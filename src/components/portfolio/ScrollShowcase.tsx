@@ -30,13 +30,33 @@ export const ScrollShowcase = ({ backgroundText, phases }: ScrollShowcaseProps) 
   const [progress, setProgress] = useState(0);
   const [pin, setPin] = useState<'before' | 'pinned' | 'after'>('before');
   const scrollTrackRef = useRef<HTMLDivElement>(null);
+  const trackTargetRef = useRef(0);
+  const trackCurrentRef = useRef(0);
+  const trackRafRef = useRef<number>();
 
   useEffect(() => {
     const track = scrollTrackRef.current;
     if (!track) return;
-    const half = track.scrollWidth / 2;
-    track.scrollLeft = progress * half;
+    const p3Start = 0.42;
+    const p3End = 0.72;
+    const localP = Math.max(0, Math.min(1, (progress - p3Start) / (p3End - p3Start)));
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    trackTargetRef.current = localP * maxScroll;
   }, [progress]);
+
+  useEffect(() => {
+    const track = scrollTrackRef.current;
+    if (!track) return;
+    const ease = 0.04;
+    const animate = () => {
+      const diff = trackTargetRef.current - trackCurrentRef.current;
+      trackCurrentRef.current += diff * ease;
+      track.scrollLeft = trackCurrentRef.current;
+      trackRafRef.current = requestAnimationFrame(animate);
+    };
+    trackRafRef.current = requestAnimationFrame(animate);
+    return () => { if (trackRafRef.current) cancelAnimationFrame(trackRafRef.current); };
+  }, []);
 
   useEffect(() => {
     let ticking = false;
