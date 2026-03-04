@@ -23,73 +23,63 @@ export const Projects = ({ sectionLabel, title, description, items }: ProjectsPr
 
   return (
     <section id="projects" className="relative overflow-hidden py-24 md:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-80" />
+      {/* <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-80" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.12]" />
-      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" /> */}
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <SectionHeader label={sectionLabel} title={title} description={description} />
 
-          {/* 3D Glass Cards */}
-          <div className="glass-scene mt-16">
+          <div className="proj-grid mt-16">
             {items.map((project, index) => {
               const Icon = iconMap[project.icon as keyof typeof iconMap];
-              const grad = `linear-gradient(135deg, ${project.gradient.join(', ')})`;
-              // Stagger rotations for 3D depth
-              const rotations = [
-                'rotateY(-8deg) rotateX(4deg) rotateZ(1deg)',
-                'rotateY(0deg) rotateX(-2deg) rotateZ(0deg)',
-                'rotateY(8deg) rotateX(4deg) rotateZ(-1deg)',
-              ];
+              const g0 = project.gradient[0];
+              const g1 = project.gradient[1] || project.gradient[0];
 
               return (
                 <button
                   key={index}
                   onClick={() => navigate(`/project/${project.slug}`)}
-                  className="glass-card group"
-                  style={{
-                    '--card-rotation': rotations[index] || rotations[1],
-                    '--card-gradient': grad,
-                  } as React.CSSProperties}
+                  className="proj-card group border"
                 >
-                  {/* Glass reflection layer */}
-                  <div className="glass-reflection" />
-
-                  {/* Edge light */}
-                  <div className="glass-edge-light" />
-
-                  {/* Content */}
-                  <div className="glass-content">
-                    <div className="flex items-center gap-2 mb-4">
-                      {Icon && <Icon className="w-5 h-5 md:w-6 md:h-6 text-foreground/60" />}
-                      <span className="text-[9px] md:text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest">
-                        {project.stack.slice(0, 3).join(' · ')}
-                      </span>
+                  {/* ── Visual area ── */}
+                  <div className="proj-visual">
+                    {/* Icon badge */}
+                    <div className="proj-icon-badge">
+                      {Icon && <Icon className="w-4 h-4 text-white/70" />}
                     </div>
 
-                    <h3 className="text-lg md:text-xl font-bold text-foreground leading-snug mb-3">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-xs md:text-sm text-muted-foreground/70 leading-relaxed line-clamp-3 my-6">
-                      {project.impact}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mt-auto">
-                      {project.stack.slice(0, 4).map((t, i) => (
-                        <span
-                          key={i}
-                          className="text-[9px] md:text-[10px] font-mono px-2.5 py-1 rounded-full bg-foreground/[0.06] text-muted-foreground/60 border border-foreground/[0.06]"
-                        >
-                          {t}
-                        </span>
-                      ))}
+                    {/* Abstract 3D geometric shapes */}
+                    <div className="proj-abstract" aria-hidden>
+                      <div
+                        className="proj-shard proj-shard-1"
+                        style={{ background: `linear-gradient(135deg, ${g0}, ${g1})` }}
+                      />
+                      <div
+                        className="proj-shard proj-shard-2"
+                        style={{ background: `linear-gradient(225deg, ${g1}, ${g0})` }}
+                      />
+                      <div
+                        className="proj-shard proj-shard-3"
+                        style={{ background: `linear-gradient(180deg, ${g0}cc, ${g1}88)` }}
+                      />
+                      <div className="proj-shard proj-shard-shine" />
                     </div>
                   </div>
 
-                  {/* Bottom gradient fade */}
-                  <div className="glass-gradient" />
+                  {/* ── Content ── */}
+                  <div className="proj-body">
+                    <h3 className="text-lg md:text-xl font-bold text-foreground leading-snug mb-2">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-6">
+                      {project.impact}
+                    </p>
+
+                    <span className="proj-view-btn">View More</span>
+                  </div>
                 </button>
               );
             })}

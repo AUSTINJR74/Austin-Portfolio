@@ -3,10 +3,15 @@ import { Badge } from '@/components/ui/badge';
 import { iconMap } from '@/lib/icon-map';
 import portfolioData from '@/data/portfolio-data.json';
 import { ArrowLeft } from 'lucide-react';
+import { useEffect } from 'react';
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const project = portfolioData.projects.items.find((p) => p.slug === slug);
 
