@@ -18,7 +18,10 @@ const Index = () => {
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
 
       <div className="relative z-10">
-        <Header navLinks={portfolioData.header.navLinks} />
+        <Header 
+          navLinks={portfolioData.header.navLinks}
+          ctaButtons={portfolioData.hero.ctaButtons}
+        />
         <main>
         <Hero
           statusBadge={portfolioData.hero.statusBadge}

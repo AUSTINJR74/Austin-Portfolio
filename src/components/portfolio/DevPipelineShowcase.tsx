@@ -206,7 +206,7 @@ export const ScrollShowcase = () => {
                 <path d="M7 1L7 10M7 10L3.5 6.5M7 10L10.5 6.5" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M2 13H12" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
-              Scroll down to deploy the application
+              Scroll down to build the application
             </div>
           </div>
         )}

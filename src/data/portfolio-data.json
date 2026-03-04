@@ -9,8 +9,8 @@
     "subheadline": "Making the web feel lighter, faster, and easier to reach.",
     "ctaButtons": [
       {
-        "label": "View Projects",
-        "href": "#projects",
+        "label": "See How I Build",
+        "href": "",
         "variant": "primary"
       },
       {
@@ -36,11 +36,11 @@
   },
   "about": {
     "sectionLabel": "About",
-    "title": "Engineering-First Mindset",
+    "title": "Meet Austin Jose",
     "paragraphs": [
-      "I'm a frontend engineer who thinks in systems, not just screens. At Zolvit (formerly Vakilsearch), I build and maintain high-traffic Next.js applications where every millisecond of performance translates to real business impact.",
-      "My approach is rooted in understanding the \"why\" behind technical decisions. Whether it's choosing between server-side rendering for SEO-critical pages or implementing incremental static regeneration for frequently updated content, I prioritize solutions that scale.",
-      "I don't just write code—I build systems that empower non-engineers through CMS-driven architectures, reduce operational overhead, and improve search visibility through technical SEO implementations."
+      "Austin is a frontend engineer who thinks in systems, not just screens. At Zolvit (formerly Vakilsearch), he builds and maintains high-traffic Next.js applications where every millisecond of performance translates to real business impact.",
+      "His approach is rooted in understanding the \"why\" behind technical decisions. Whether it’s choosing server-side rendering for SEO-critical pages or implementing incremental static regeneration for frequently updated content, he prioritizes solutions that scale.",
+      "He doesn’t just write code—he builds systems that empower non-engineers through CMS-driven architectures, reduce operational overhead, and improve search visibility through technical SEO implementations."
     ],
     "highlights": [
       {
@@ -295,20 +295,25 @@
       "titleLabel": "Terminal — zsh",
       "prompt": "~/micro-frontend",
       "gitOutput": [
-        "Enumerating objects: 5, done.",
-        "Counting objects: 100% (5/5), done.",
-        "Writing objects: 100% (3/3), 312 bytes | 312.00 KiB/s"
+        "Enumerating objects: 29, done.",
+        "Counting objects: 100% (29/29), done.",
+        "Delta compression using up to 10 threads",
+        "Compressing objects: 100% (14/14), done.",
+        "Writing objects: 100% (15/15), 2.69 KiB | 2.69 MiB/s, done.",
+        "Total 15 (delta 11), reused 0 (delta 0), pack-reused 0 (from 0)",
+        "remote: Resolving deltas: 100% (11/11), completed with 11 local objects.",
+        "790486a..ad8b047  main -> main"
       ],
       "successMessage": "→ Branch pushed successfully!"
     },
     "githubPR": {
-      "repoName": "portfolio",
+      "repoName": "Portfolio",
       "checks": [
         { "name": "CI / Build & Test", "pendingStatus": "Running..." },
         { "name": "Lint & Type Check", "pendingStatus": "Queued" }
       ],
       "approvalLabel": "Approved",
-      "reviewer": "austin-jose reviewed and approved"
+      "reviewer": "AUSTINJOSE7 reviewed and approved"
     },
     "buildProcess": {
       "jobName": "build_push_deploy_to_k8s",

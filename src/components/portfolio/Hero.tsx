@@ -88,13 +88,17 @@ export const Hero = ({ statusBadge, headline, subheadline, ctaButtons, stats }: 
                         ? 'bg-gradient-primary text-primary-foreground hover:opacity-90 transition-opacity glow-hover px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase'
                         : 'border-border/70 bg-background/20 hover:bg-secondary/40 hover:text-primary px-8 py-6 text-sm font-semibold font-mono tracking-[0.16em] uppercase backdrop-blur'
                     }
-                    asChild
+                    onClick={() => {
+                      if (button.variant === 'primary') {
+                        window.scrollTo({ top: 800, behavior: 'smooth' });
+                      } else {
+                        window.open(button.href, '_blank');
+                      }
+                    }}
                   >
-                    <a href={button.href} target="_blank">
-                      {button.variant === 'outline' && <Icon className="mr-2 h-5 w-5" />}
-                      {button.label}
-                      {button.variant === 'primary' && <Icon className="ml-2 h-5 w-5" />}
-                    </a>
+                    {button.variant === 'primary' && <Icon className="ml-2 h-5 w-5" />}
+                    {button.variant === 'outline' && <Icon className="mr-2 h-5 w-5" />}
+                    {button.label}
                   </Button>
                 );
               })}

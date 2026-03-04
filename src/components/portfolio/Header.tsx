@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Briefcase } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContexts';
 import { Button } from '@/components/ui/button';
 
@@ -8,9 +8,14 @@ interface HeaderProps {
     href: string;
     label: string;
   }>;
+  ctaButtons: Array<{
+    label: string;
+    href: string;
+    variant: string;
+  }>;
 }
 
-export const Header = ({ navLinks }: HeaderProps) => {
+export const Header = ({ navLinks, ctaButtons }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -61,6 +66,19 @@ export const Header = ({ navLinks }: HeaderProps) => {
 
           {/* Theme Toggle & Mobile Menu */}
           <div className="flex items-center gap-4">
+            {/* Hire Me Button - Mobile Only */}
+            <Button
+              size="sm"
+              variant="outline"
+              className="md:hidden border-border/70 bg-background/20 hover:bg-secondary/40 hover:text-primary px-3 py-2 text-xs font-semibold font-mono tracking-[0.16em] uppercase backdrop-blur"
+              onClick={() => {
+                window.open(ctaButtons[1].href, '_blank');
+              }}
+            >
+              <Briefcase className="mr-1 h-4 w-4" />
+              {ctaButtons[1].label}
+            </Button>
+
             {/* <Button
               variant="ghost"
               size="icon"

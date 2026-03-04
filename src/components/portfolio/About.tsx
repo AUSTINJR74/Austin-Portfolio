@@ -21,7 +21,7 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.1fr)] gap-8 items-start">
+          <div className="grid md:grid-cols-[minmax(0,_0.9fr)_minmax(0,_1.1fr)] gap-20 items-start">
             {/* Left Column - Photo */}
             <div className="flex justify-center md:justify-start">
               <div className="relative w-full max-w-xs md:max-w-sm">
@@ -36,7 +36,23 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
 
             {/* Right Column - About Text and Highlights */}
             <div className="space-y-10">
-              <SectionHeader label={sectionLabel} title={title} className="mb-4 md:mb-6" />
+              {/* Custom Section Header */}
+            <div className="mb-4 md:mb-10">
+              <div className="flex items-center gap-3">
+                <span className="text-primary font-mono text-xs tracking-[0.22em] uppercase">
+                  {sectionLabel}
+                </span>
+                <span className="text-muted-foreground/70 font-mono text-xs tracking-[0.22em]">
+                  ||
+                </span>
+                <div className="h-px w-10 bg-border" />
+              </div>
+
+              <h2 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight">
+                <span className="text-muted-foreground">Meet</span>
+                <span className="text-gradient ml-3">Austin Jose</span>
+              </h2>
+            </div>
 
               <div className="space-y-6">
                 {paragraphs.map((paragraph, index) => (
@@ -49,7 +65,7 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6 mt-10 md:mt-[100px]">
+          {/* <div className="grid sm:grid-cols-2 gap-6 mt-10 md:mt-[100px]">
                 {highlights.map((item, index) => {
                   const Icon = iconMap[item.icon as keyof typeof iconMap];
                   return (
@@ -67,7 +83,7 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
                     </div>
                   );
                 })}
-              </div>
+              </div> */}
         </div>
       </div>
     </section>
