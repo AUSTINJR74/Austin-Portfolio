@@ -13,7 +13,9 @@ export const ScrollShowcase = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [pin, setPin] = useState<'before' | 'pinned' | 'after'>('before');
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState(() => {
+    return sessionStorage.getItem('userName') || '';
+  });
   const [showError, setShowError] = useState(false);
 
   useEffect(() => {
@@ -55,6 +57,13 @@ export const ScrollShowcase = () => {
   useEffect(() => {
     if (userName.trim()) {
       setShowError(false);
+    }
+  }, [userName]);
+
+  // Save userName to sessionStorage whenever it changes
+  useEffect(() => {
+    if (userName) {
+      sessionStorage.setItem('userName', userName);
     }
   }, [userName]);
 
