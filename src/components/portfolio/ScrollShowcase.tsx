@@ -87,7 +87,7 @@ export const ScrollShowcase = ({ backgroundText, phases }: ScrollShowcaseProps) 
         : { position: 'absolute', top: 0, left: 0, width: '100%' };
 
   return (
-    <section ref={sectionRef} style={{ height: '400vh' }} className="relative">
+    <section ref={sectionRef} style={{ height: '800vh' }} className="relative">
       <div
         ref={innerRef}
         className="h-screen flex items-center justify-center overflow-hidden bg-background"
@@ -142,7 +142,7 @@ export const ScrollShowcase = ({ backgroundText, phases }: ScrollShowcaseProps) 
             className="absolute inset-0 flex items-center justify-center px-4 transition-none"
             style={{ opacity: p2, transform: `scale(${0.9 + p2 * 0.1})`, willChange: 'transform, opacity' }}
           >
-            <div className="w-full max-w-2xl rounded-2xl border border-primary/20 bg-card/80 backdrop-blur-xl p-6 md:p-8 shadow-elevated">
+            <div className="w-full max-w-xl rounded-2xl border border-primary/20 bg-card/80 backdrop-blur-xl p-6 md:p-8 shadow-elevated">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-lg bg-gradient-primary flex items-center justify-center shrink-0">
                   <span className="text-primary-foreground font-bold text-lg">{phases[1].icon}</span>

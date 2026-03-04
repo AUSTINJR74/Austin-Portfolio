@@ -242,41 +242,43 @@
     "copyright": "Built with performance in mind. © {year} Austin Jose R"
   },
   "scrollShowcase": {
-    "backgroundText": ["Code", "to", "Web"],
-    "phases": [
-      {
-        "type": "code",
-        "fileName": "App.tsx",
-        "code": "const App = () => {\n  return (\n    <Layout>\n      <Hero />\n      <About />\n      <Experience />\n      <Projects />\n    </Layout>\n  );\n};"
-      },
-      {
-        "type": "building",
-        "icon": "⚙",
-        "title": "Compiling & Bundling",
-        "subtitle": "Transforming source into optimized assets",
-        "bars": [
-          { "label": "Components", "value": 100 },
-          { "label": "Styles", "value": 85 },
-          { "label": "Assets", "value": 70 }
-        ]
-      },
-      {
-        "type": "deployed",
-        "url": "https://vakilsearch.com",
-        "statusLabel": "Live",
-        "title": "From Code to a Real Website",
-        "subtitle": "What started as JSX is now pixels on a screen",
-        "image": "/projects/landing/page_1.png"
-      },
-      {
-        "type": "impact",
-        "sectionLabel": "The Result",
-        "headline": "Ideas Become",
-        "headlineHighlight": "Reality",
-        "description": "Every line of code written is a step closer to a product people actually use."
-      }
-    ]
-  },
+  "backgroundText": ["Sketch", "to", "Fetch"],
+  "phases": [
+    {
+      "type": "code",
+      "fileName": "App.tsx",
+      "code": "import { useEffect, useState } from \"react\";\n\nconst App = () => {\n  const [ready, setReady] = useState(false);\n\n  useEffect(() => {\n    setReady(true);\n  }, []);\n\n  if (!ready) return null;\n\n  return (\n    <Layout>\n      <Hero />\n      <About />\n      <Experience />\n      <Projects />\n    </Layout>\n  );\n};\n\nexport default App;"    
+    },
+    {
+      "type": "building",
+      "icon": "⚙️",
+      "title": "Turning Human Logic Into Machine Obedience",
+      "subtitle": "Compilers translating, bundlers packing, and a little faith in the build pipeline 🚀",
+      "bars": [
+        { "label": "Components negotiating hierarchy 🧩", "value": 100 },
+        { "label": "Styles achieving temporary peace 🎨", "value": 85 },
+        { "label": "Assets finding their folders 📦", "value": 70 },
+        { "label": "Network requests learning patience 🌐", "value": 90 },
+        { "label": "Bundle size going on a diet 🪶", "value": 80 }
+      ]
+    },
+    {
+      "type": "deployed",
+      "url": "https://vakilsearch.com",
+      "statusLabel": "Live (no console errors)",
+      "title": "From JSX to the Internet",
+      "subtitle": "A few thousand transforms later… it's now pixels, requests, and real users",
+      "image": "/projects/landing/page_1.png"
+    },
+    {
+    "type": "impact",
+    "sectionLabel": "The Outcome",
+    "headline": "From Concept to",
+    "headlineHighlight": "Products People Actually Use",
+    "description": "Great software starts as structured thinking. With thoughtful engineering and careful optimization, those ideas become fast interfaces, resilient systems, and experiences people rely on every day."
+  }
+  ]
+},
   "header": {
     "navLinks": [
       { "href": "#about", "label": "About" },
