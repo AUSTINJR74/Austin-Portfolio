@@ -186,7 +186,7 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
                       loading="lazy"
                       data-parallax-speed={ic.speed}
                       data-rotate={ic.rotate}
-                      className="absolute hidden md:block pointer-events-none opacity-[0.18] dark:opacity-[0.40] transition-transform duration-100"
+                      className="absolute hidden md:block pointer-events-none dark:opacity-[0.40] transition-transform duration-100"
                       style={{
                         left: `${ic.x}%`,
                         top: ic.y,
@@ -213,7 +213,7 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
                       boxShadow: isVis ? `0 4px 40px ${theme.glow}` : 'none',
                       transform: `translateY(${isVis ? 0 : 40}px) translateX(${slideX}px) rotate(${tiltDeg}deg)`,
                       opacity: isVis ? 1 : 0,
-                      transition: 'transform 0.7s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease-out, box-shadow 0.7s ease-out, border-color 0.5s ease',
+                      transition: 'transform 2s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease-out, box-shadow 0.7s ease-out, border-color 1s ease',
                     }}
                     className={`
                       group relative w-full md:w-[50%] overflow-hidden
