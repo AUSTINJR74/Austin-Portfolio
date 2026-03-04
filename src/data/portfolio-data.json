@@ -268,7 +268,23 @@
       "statusLabel": "Live (no console errors)",
       "title": "From JSX to the Internet",
       "subtitle": "A few thousand transforms later… it's now pixels, requests, and real users",
-      "image": "/projects/landing/page_1.png"
+      "images": [
+        "/projects/landing/page_1.png",
+        "/projects/landing/page_2.png",
+        "/projects/landing/page_3.png",
+        "/projects/landing/page_4.png",
+        "/projects/landing/page_5.png",
+        "/projects/landing/page_1.png",
+        "/projects/landing/page_2.png",
+        "/projects/landing/page_3.png",
+        "/projects/landing/page_4.png",
+        "/projects/landing/page_5.png",
+        "/projects/landing/page_1.png",
+        "/projects/landing/page_2.png",
+        "/projects/landing/page_3.png",
+        "/projects/landing/page_4.png",
+        "/projects/landing/page_5.png"
+      ]
     },
     {
     "type": "impact",

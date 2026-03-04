@@ -12,6 +12,7 @@ interface Phase {
   statusLabel?: string;
   stats?: Array<{ value: string; label: string }>;
   image?: string;
+  images?: string[];
   sectionLabel?: string;
   headline?: string;
   headlineHighlight?: string;
@@ -28,6 +29,14 @@ export const ScrollShowcase = ({ backgroundText, phases }: ScrollShowcaseProps) 
   const innerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [pin, setPin] = useState<'before' | 'pinned' | 'after'>('before');
+  const scrollTrackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const track = scrollTrackRef.current;
+    if (!track) return;
+    const half = track.scrollWidth / 2;
+    track.scrollLeft = progress * half;
+  }, [progress]);
 
   useEffect(() => {
     let ticking = false;
@@ -176,43 +185,38 @@ export const ScrollShowcase = ({ backgroundText, phases }: ScrollShowcaseProps) 
         {/* ── PHASE 3 — Deployed / Live ── */}
         {phases[2] && (
           <div
-            className="absolute inset-0 flex items-center justify-center px-4 transition-none"
+            className="absolute inset-0 flex items-center justify-center transition-none"
             style={{ opacity: p3, transform: `scale(${0.88 + p3 * 0.12})`, willChange: 'transform, opacity' }}
           >
-            <div className="w-full max-w-2xl">
-              {/* browser chrome */}
-              <div className="rounded-t-xl bg-muted/90 border border-border px-4 py-2.5 flex items-center gap-3">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-                </div>
-                <div className="flex-1 bg-background/60 rounded-md px-3 py-1 text-[11px] text-muted-foreground font-mono truncate">
-                  {phases[2].url}
-                </div>
-              </div>
-              {/* page body */}
-              <div className="rounded-b-xl bg-card/90 border border-t-0 border-border overflow-hidden backdrop-blur-xl">
-                {phases[2].image ? (
-                  <img
-                    src={phases[2].image}
-                    alt={phases[2].title || 'Deployed website'}
-                    className="w-full h-auto block"
-                  />
-                ) : (
-                  <div className="p-6 md:p-8 text-center">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-xs font-medium mb-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                      {phases[2].statusLabel}
+            <div className="w-full" style={{ mask: 'linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent)', WebkitMask: 'linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent)' }}>
+              {/* auto-scrolling track of separate browser windows */}
+              <div
+                ref={scrollTrackRef}
+                className="flex gap-6 overflow-x-hidden px-8"
+                style={{ scrollBehavior: 'auto' }}
+              >
+                {/* duplicate images for seamless loop */}
+                {[...(phases[2].images ?? []), ...(phases[2].images ?? [])].map((src, i) => (
+                  <div key={i} className="shrink-0 w-[500px] md:w-[800px] h-[400px] md:h-[480px] rounded-xl overflow-hidden border border-border shadow-elevated flex flex-col">
+                    {/* mini browser chrome */}
+                    <div className="bg-muted/90 border-b border-border px-3 py-2 flex items-center gap-2 shrink-0">
+                      <div className="flex gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
+                        <div className="w-2 h-2 rounded-full bg-[#FEBC2E]" />
+                        <div className="w-2 h-2 rounded-full bg-[#28C840]" />
+                      </div>
+                      <div className="flex-1 bg-background/60 rounded px-2 py-0.5 text-[9px] text-muted-foreground font-mono truncate">
+                        {phases[2].url}
+                      </div>
                     </div>
-                    <div className="text-lg md:text-xl font-bold text-foreground mb-1">
-                      {phases[2].title}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {phases[2].subtitle}
-                    </div>
+                    {/* page screenshot */}
+                    <img
+                      src={src}
+                      alt={`${phases[2].title || 'Website'} - page ${(i % (phases[2].images?.length ?? 1)) + 1}`}
+                      className="w-full h-full object-cover object-top block bg-card"
+                    />
                   </div>
-                )}
+                ))}
               </div>
             </div>
           </div>
