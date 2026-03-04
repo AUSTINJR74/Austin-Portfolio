@@ -241,6 +241,42 @@
     ],
     "copyright": "Built with performance in mind. © {year} Austin Jose R"
   },
+  "scrollShowcase": {
+    "backgroundText": ["Code", "to", "Web"],
+    "phases": [
+      {
+        "type": "code",
+        "fileName": "App.tsx",
+        "code": "const App = () => {\n  return (\n    <Layout>\n      <Hero />\n      <About />\n      <Experience />\n      <Projects />\n    </Layout>\n  );\n};"
+      },
+      {
+        "type": "building",
+        "icon": "⚙",
+        "title": "Compiling & Bundling",
+        "subtitle": "Transforming source into optimized assets",
+        "bars": [
+          { "label": "Components", "value": 100 },
+          { "label": "Styles", "value": 85 },
+          { "label": "Assets", "value": 70 }
+        ]
+      },
+      {
+        "type": "deployed",
+        "url": "https://vakilsearch.com",
+        "statusLabel": "Live",
+        "title": "From Code to a Real Website",
+        "subtitle": "What started as JSX is now pixels on a screen",
+        "image": "/projects/landing/page_1.png"
+      },
+      {
+        "type": "impact",
+        "sectionLabel": "The Result",
+        "headline": "Ideas Become",
+        "headlineHighlight": "Reality",
+        "description": "Every line of code written is a step closer to a product people actually use."
+      }
+    ]
+  },
   "header": {
     "navLinks": [
       { "href": "#about", "label": "About" },

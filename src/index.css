@@ -256,4 +256,10 @@
     opacity: 0.14;
     filter: grayscale(1) brightness(1.8) contrast(0.6);
   }
+
+  /* ── Scroll showcase progress bars ── */
+  .showcase-bar-fill {
+    width: var(--bar-width, 0%);
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
 }

@@ -7,11 +7,12 @@ import { Skills } from '@/components/portfolio/Skills';
 import { Achievements } from '@/components/portfolio/Achievements';
 import { Education } from '@/components/portfolio/Education';
 import { Footer } from '@/components/portfolio/Footer';
+import { ScrollShowcase } from '@/components/portfolio/ScrollShowcase';
 import portfolioData from '@/data/portfolio-data.json';
 
 const Index = () => {
   return (
-    <div className="relative min-h-screen bg-background overflow-hidden">
+    <div className="relative min-h-screen bg-background overflow-clip">
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-subtle" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.06]" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
@@ -25,6 +26,10 @@ const Index = () => {
           subheadline={portfolioData.hero.subheadline}
           ctaButtons={portfolioData.hero.ctaButtons}
           stats={portfolioData.hero.stats}
+        />
+        <ScrollShowcase
+          backgroundText={portfolioData.scrollShowcase.backgroundText}
+          phases={portfolioData.scrollShowcase.phases}
         />
         <About
           sectionLabel={portfolioData.about.sectionLabel}
