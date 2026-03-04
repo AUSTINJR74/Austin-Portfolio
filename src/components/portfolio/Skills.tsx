@@ -206,17 +206,17 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
                     style={{
                       transformStyle: 'preserve-3d',
                       willChange: 'transform',
-                      background: `linear-gradient(135deg, ${theme.bg}, transparent 60%)`,
-                      borderColor: isVis ? theme.border : 'transparent',
+                      '--card-bg-dark': `linear-gradient(135deg, ${theme.bg}, transparent 60%)`,
+                      '--card-border': isVis ? theme.border : 'transparent',
+                      '--card-glow': isVis ? `0 4px 40px ${theme.glow}` : 'none',
                       borderLeftWidth: '3px',
                       borderLeftColor: theme.accent,
-                      boxShadow: isVis ? `0 4px 40px ${theme.glow}` : 'none',
                       transform: `translateY(${isVis ? 0 : 40}px) translateX(${slideX}px) rotate(${tiltDeg}deg)`,
                       opacity: isVis ? 1 : 0,
                       transition: 'transform 2s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease-out, box-shadow 0.7s ease-out, border-color 1s ease',
-                    }}
+                    } as React.CSSProperties}
                     className={`
-                      group relative w-full md:w-[50%] overflow-hidden
+                      skill-card group relative w-full md:w-[50%] overflow-hidden
                       rounded-xl border backdrop-blur-sm
                       p-5 sm:p-6 md:p-8 z-[2]
                       ${side === 'right' ? 'md:ml-auto' : 'md:mr-auto'}
@@ -243,8 +243,8 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
                             key={si}
                             className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105 skill-card-tag"
                             style={{
-                              background: theme.tagBg,
-                              border: `1px solid ${theme.tagBorder}`,
+                              '--tag-bg-dark': theme.tagBg,
+                              '--tag-border-dark': theme.tagBorder,
                               '--tag-light': theme.tagText,
                               '--tag-dark': theme.accentLight,
                             } as React.CSSProperties}

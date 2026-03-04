@@ -215,7 +215,19 @@
     @apply border border-border/60 bg-card/40 backdrop-blur shadow-elevated;
   }
 
-  /* Skills card theme-aware colors */
+  /* Skills card — light: clean white, dark: colored gradient */
+  .skill-card {
+    background: hsl(0 0% 100% / 0.92) !important;
+    border-color: hsl(var(--border)) !important;
+    box-shadow: 0 1px 4px hsl(222 47% 11% / 0.06) !important;
+  }
+  .dark .skill-card {
+    background: var(--card-bg-dark) !important;
+    border-color: var(--card-border) !important;
+    box-shadow: var(--card-glow) !important;
+  }
+
+  /* Skills heading — light: dark accent, dark: light accent */
   .skill-card-heading {
     color: var(--heading-light);
   }
@@ -223,11 +235,16 @@
     color: var(--heading-dark);
   }
 
+  /* Skills tags — light: clean pill, dark: colored bg */
   .skill-card-tag {
     color: var(--tag-light);
+    background: hsl(var(--muted)) !important;
+    border: 1px solid hsl(var(--border)) !important;
   }
   .dark .skill-card-tag {
     color: var(--tag-dark);
+    background: var(--tag-bg-dark) !important;
+    border: 1px solid var(--tag-border-dark) !important;
   }
 
   /* Floating skill icons — uniform gray */
