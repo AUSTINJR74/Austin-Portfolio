@@ -1,4 +1,4 @@
-import { Badge } from '@/components/ui/badge';
+import { useNavigate } from 'react-router-dom';
 import { iconMap } from '@/lib/icon-map';
 import { SectionHeader } from '@/components/portfolio/SectionHeader';
 
@@ -7,6 +7,8 @@ interface ProjectsProps {
   title: string;
   description: string;
   items: Array<{
+    slug: string;
+    gradient: string[];
     icon: string;
     title: string;
     problem: string;
@@ -17,6 +19,8 @@ interface ProjectsProps {
 }
 
 export const Projects = ({ sectionLabel, title, description, items }: ProjectsProps) => {
+  const navigate = useNavigate();
+
   return (
     <section id="projects" className="relative overflow-hidden py-24 md:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-80" />
@@ -27,72 +31,66 @@ export const Projects = ({ sectionLabel, title, description, items }: ProjectsPr
         <div className="max-w-6xl mx-auto">
           <SectionHeader label={sectionLabel} title={title} description={description} />
 
-          {/* Projects Grid */}
-          <div className="grid gap-8">
+          {/* 3D Glass Cards */}
+          <div className="glass-scene mt-16">
             {items.map((project, index) => {
               const Icon = iconMap[project.icon as keyof typeof iconMap];
+              const grad = `linear-gradient(135deg, ${project.gradient.join(', ')})`;
+              // Stagger rotations for 3D depth
+              const rotations = [
+                'rotateY(-8deg) rotateX(4deg) rotateZ(1deg)',
+                'rotateY(0deg) rotateX(-2deg) rotateZ(0deg)',
+                'rotateY(8deg) rotateX(4deg) rotateZ(-1deg)',
+              ];
+
               return (
-                <article
+                <button
                   key={index}
-                  className="group p-6 md:p-8 rounded-xl solais-glass hover:shadow-elevated transition-all duration-300"
+                  onClick={() => navigate(`/project/${project.slug}`)}
+                  className="glass-card group"
+                  style={{
+                    '--card-rotation': rotations[index] || rotations[1],
+                    '--card-gradient': grad,
+                  } as React.CSSProperties}
                 >
-                  <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Left - Icon & Title */}
-                    <div className="lg:w-1/3">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                        {Icon && <Icon className="w-6 h-6 text-primary" />}
-                      </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                        {project.title}
-                      </h3>
-                      <div className="flex flex-wrap gap-2">
-                        {project.stack.map((tech, techIndex) => (
-                          <Badge
-                            key={techIndex}
-                            variant="secondary"
-                            className="font-mono text-xs"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
+                  {/* Glass reflection layer */}
+                  <div className="glass-reflection" />
+
+                  {/* Edge light */}
+                  <div className="glass-edge-light" />
+
+                  {/* Content */}
+                  <div className="glass-content">
+                    <div className="flex items-center gap-2 mb-4">
+                      {Icon && <Icon className="w-5 h-5 md:w-6 md:h-6 text-foreground/60" />}
+                      <span className="text-[9px] md:text-[10px] font-mono text-muted-foreground/50 uppercase tracking-widest">
+                        {project.stack.slice(0, 3).join(' · ')}
+                      </span>
                     </div>
 
-                    {/* Right - Details */}
-                    <div className="lg:w-2/3 space-y-6">
-                      {/* Problem */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
-                          Problem
-                        </h4>
-                        <p className="text-muted-foreground">{project.problem}</p>
-                      </div>
+                    <h3 className="text-lg md:text-xl font-bold text-foreground leading-snug mb-3">
+                      {project.title}
+                    </h3>
 
-                      {/* Technical Decisions */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
-                          Technical Decisions
-                        </h4>
-                        <ul className="space-y-2">
-                          {project.decisions.map((decision, dIndex) => (
-                            <li key={dIndex} className="flex items-start gap-2 text-muted-foreground">
-                              <span className="text-primary mt-1.5">→</span>
-                              <span>{decision}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                    <p className="text-xs md:text-sm text-muted-foreground/70 leading-relaxed line-clamp-3 my-6">
+                      {project.impact}
+                    </p>
 
-                      {/* Impact */}
-                      <div className="p-4 rounded-lg bg-primary/5 border border-primary/10">
-                        <h4 className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">
-                          Impact
-                        </h4>
-                        <p className="text-foreground font-medium">{project.impact}</p>
-                      </div>
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {project.stack.slice(0, 4).map((t, i) => (
+                        <span
+                          key={i}
+                          className="text-[9px] md:text-[10px] font-mono px-2.5 py-1 rounded-full bg-foreground/[0.06] text-muted-foreground/60 border border-foreground/[0.06]"
+                        >
+                          {t}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </article>
+
+                  {/* Bottom gradient fade */}
+                  <div className="glass-gradient" />
+                </button>
               );
             })}
           </div>

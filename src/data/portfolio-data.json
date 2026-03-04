@@ -129,6 +129,8 @@
     "description": "Real production systems with measurable outcomes. Each project represents a problem solved, not just code written.",
     "items": [
       {
+        "slug": "cms-legal-platform",
+        "gradient": ["#1e293b", "#334155"],
         "icon": "Server",
         "title": "CMS-Based Legal Services Platform",
         "problem": "Engineering team bottleneck for content updates; slow time-to-market for new pages.",
@@ -141,6 +143,8 @@
         "stack": ["Next.js", "React", "TypeScript", "REST APIs", "Headless CMS"]
       },
       {
+        "slug": "video-consultation",
+        "gradient": ["#1a2e35", "#2d4a53"],
         "icon": "Video",
         "title": "Video Consultation Web Application",
         "problem": "Need for real-time legal consultations with reliable, low-latency video.",
@@ -153,6 +157,8 @@
         "stack": ["React", "WebRTC", "WebSockets", "Node.js", "Payment Gateway"]
       },
       {
+        "slug": "lawyers-listing",
+        "gradient": ["#2a1f3d", "#3d2f5c"],
         "icon": "Search",
         "title": "Lawyers Listing & Public Q&A Platform",
         "problem": "Large datasets of lawyers and Q&A content requiring fast search and SEO visibility.",
