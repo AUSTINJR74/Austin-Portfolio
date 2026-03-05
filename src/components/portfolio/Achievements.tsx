@@ -1,4 +1,5 @@
 import { SectionHeader } from '@/components/portfolio/SectionHeader';
+import { useEffect, useState } from 'react';
 
 interface AchievementsProps {
   sectionLabel: string;
@@ -12,6 +13,12 @@ interface AchievementsProps {
 }
 
 export const Achievements = ({ sectionLabel, title, items }: AchievementsProps) => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(0);
+
+  useEffect(() => {
+    setHoveredCard(0);
+  }, []);
+  
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-70" />
@@ -29,11 +36,19 @@ export const Achievements = ({ sectionLabel, title, items }: AchievementsProps) 
               return (
                 <div
                   key={index}
-                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card/40 backdrop-blur shadow-card p-7 md:p-9 transition-all duration-300 hover:shadow-elevated hover:-translate-y-1 hover:border-primary/40"
+                  onMouseEnter={() => setHoveredCard(index)}
+                  onMouseLeave={() => setHoveredCard(0)}
+                  className={`group relative overflow-hidden rounded-2xl border bg-card/40 backdrop-blur shadow-card p-7 md:p-9 transition-all duration-300 ${
+                    hoveredCard === index 
+                      ? 'border-primary/60 shadow-2xl -translate-y-2' 
+                      : 'border-border/60 hover:shadow-elevated hover:-translate-y-1 hover:border-primary/40'
+                  }`}
                 >
                   <div
                     aria-hidden
-                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    className={`pointer-events-none absolute inset-0 transition-opacity duration-300 ${
+                      hoveredCard === index ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`}
                     style={{ background: 'radial-gradient(900px circle at 70% 35%, hsl(var(--primary) / 0.22), transparent 60%)' }}
                   />
 
@@ -44,7 +59,9 @@ export const Achievements = ({ sectionLabel, title, items }: AchievementsProps) 
 
                     <div
                       aria-hidden
-                      className="absolute right-0 top-0 -translate-y-6 text-[96px] md:text-[120px] font-extrabold tracking-tight text-foreground/5 transition-opacity duration-300 group-hover:text-foreground/10"
+                      className={`absolute right-0 top-0 -translate-y-6 text-[96px] md:text-[120px] font-extrabold tracking-tight transition-opacity duration-300 ${
+                        hoveredCard === index ? 'text-foreground/15' : 'text-foreground/5 group-hover:text-foreground/10'
+                      }`}
                     >
                       {step}
                     </div>
