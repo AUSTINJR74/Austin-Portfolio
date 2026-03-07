@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { SectionHeader } from '@/components/portfolio/SectionHeader';
 import { iconMap } from '@/lib/icon-map';
+import { GithubProof } from '@/components/portfolio/GithubProof';
 
 interface ExperienceProps {
   sectionLabel: string;
@@ -14,9 +15,17 @@ interface ExperienceProps {
     type: string;
     highlights: string[];
   }>;
+  githubData?: {
+    total: Record<string, number>;
+    contributions: {
+      date: string;
+      count: number;
+      level?: number;
+    }[];
+  };
 }
 
-export const Experience = ({ sectionLabel, title, strategyChips = [], items }: ExperienceProps) => {
+export const Experience = ({ sectionLabel, title, strategyChips = [], items, githubData }: ExperienceProps) => {
   const Building2Icon = iconMap.Building2;
   const CalendarIcon = iconMap.Calendar;
   const ChevronRightIcon = iconMap.ChevronRight;
@@ -69,23 +78,7 @@ export const Experience = ({ sectionLabel, title, strategyChips = [], items }: E
     }
   };
 
-  const githubSnapshot = {
-    username: '@vakilsearch',
-    contributions: [
-      { year: 2026, count: 3708, repos: 32 },
-      { year: 2025, count: 3671, repos: 31 },
-      { year: 2024, count: 1310, repos: 24 },
-    ],
-    mix: [
-      { label: 'Pull requests', value: '43%' },
-      { label: 'Commits', value: '34%' },
-      { label: 'Code review', value: '22%' },
-      { label: 'Issues triaged', value: '1%' },
-    ],
-  };
-  const featuredContribution = githubSnapshot.contributions[0];
-  const totalCommits = githubSnapshot.contributions.reduce((sum, entry) => sum + entry.count, 0);
-  const maxRepos = Math.max(...githubSnapshot.contributions.map((entry) => entry.repos));
+  const username = 'AUSTINJOSE7';
 
   return (
     <section
@@ -98,92 +91,13 @@ export const Experience = ({ sectionLabel, title, strategyChips = [], items }: E
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-6xl mx-auto space-y-16">
-          {/* <div className="sticky top-6 sm:top-8 lg:top-10 z-20">
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-[#081229] via-[#040b18] to-[#030512] px-5 py-4 sm:px-7 sm:py-5 shadow-[0_18px_60px_rgba(2,4,27,0.65)]">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="space-y-1">
-                  <p className="text-[10px] uppercase tracking-[0.45em] text-primary/70">GitHub Proof</p>
-                  <p className="text-sm font-medium text-muted-foreground">{githubSnapshot.username}</p>
-                </div>
-                <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  <div className="rounded-full border border-white/10 px-3 py-1 text-white/80">
-                    Total commits {totalCommits.toLocaleString()}
-                  </div>
-                  <div className="rounded-full border border-white/10 px-3 py-1 text-white/80">
-                    {maxRepos}+ active repos
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => scrollToCard(activeCard)}
-                  className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.4em] text-primary"
-                >
-                  View work
-                </button>
-              </div>
-
-              <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(180px,0.6fr)]">
-                <div className="space-y-4">
-                  <div className="flex items-baseline gap-3 text-white">
-                    <p className="text-3xl sm:text-4xl font-semibold leading-tight">
-                      {featuredContribution.count.toLocaleString()}
-                    </p>
-                    <p className="text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
-                      Commits · {featuredContribution.year}
-                    </p>
-                  </div>
-                  <p className="text-xs sm:text-sm text-muted-foreground/80">
-                    Sustained delivery across {featuredContribution.repos}+ repositories with measurable platform wins
-                    and peer-reviewed PR streaks.
-                  </p>
-
-                  <div className="hidden sm:grid gap-2">
-                    {githubSnapshot.mix.map((stat) => (
-                      <div key={stat.label} className="space-y-1">
-                        <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.35em] text-muted-foreground">
-                          <span>{stat.label}</span>
-                          <span className="text-primary font-semibold">{stat.value}</span>
-                        </div>
-                        <div className="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-gradient-to-r from-primary via-cyan-400 to-emerald-400"
-                            style={{ width: stat.value }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.35em] text-muted-foreground sm:hidden">
-                    {githubSnapshot.mix.map((stat) => (
-                      <span key={stat.label} className="rounded-full border border-white/15 px-3 py-0.5 text-primary">
-                        {stat.label}: {stat.value}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-white/10 bg-white/5/20 p-3 flex flex-col gap-2">
-                  {githubSnapshot.contributions.map((entry) => (
-                    <div
-                      key={entry.year}
-                      className={`flex items-center justify-between rounded-lg px-3 py-2 text-xs sm:text-sm transition-all ${
-                        entry.year === featuredContribution.year
-                          ? 'bg-primary/15 text-primary font-semibold'
-                          : 'text-muted-foreground'
-                      }`}
-                    >
-                      <span>{entry.year}</span>
-                      <div className="text-right">
-                        <p>{entry.count.toLocaleString()}</p>
-                        <p className="text-[10px] uppercase tracking-[0.35em]">{entry.repos}+ repos</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div> */}
+          <div className="">
+            <GithubProof
+              username={username}
+              data={githubData}
+              onViewWork={() => scrollToCard(activeCard)}
+            />
+          </div>
 
           <div className="relative">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.25fr)]">

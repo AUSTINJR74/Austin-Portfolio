@@ -335,14 +335,14 @@ export const Projects = ({ sectionLabel, title, description, items }: ProjectsPr
                   <div className="flex md:hidden w-full justify-center gap-4">
                     <button
                       type="button"
-                      className="w-6 h-6 md:w-12 md:h-12 rounded-full bg-white/15 text-white flex items-center justify-center"
+                      className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/15 text-white flex items-center justify-center"
                       onClick={() => goTo(currentIndex - 1)}
                     >
                       <ChevronLeft className="w-3 h-3 md:w-5 md:h-5" />
                     </button>
                     <button
                       type="button"
-                      className="w-6 h-6 md:w-12 md:h-12 rounded-full bg-white/15 text-white flex items-center justify-center"
+                      className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-white/15 text-white flex items-center justify-center"
                       onClick={() => goTo(currentIndex + 1)}
                     >
                       <ChevronRight className="w-3 h-3 md:w-5 md:h-5" />
@@ -358,7 +358,7 @@ export const Projects = ({ sectionLabel, title, description, items }: ProjectsPr
                           e.stopPropagation();
                           goTo(idx);
                         }}
-                        className={`w-1 h-1 rounded-full ${idx === currentIndex ? 'bg-white' : 'bg-white/30'}`}
+                        className={`w-1 h-1 md:w-2 md:h-2 rounded-full ${idx === currentIndex ? 'bg-primary' : 'bg-white/30'}`}
                       />
                     ))}
                   </div>
