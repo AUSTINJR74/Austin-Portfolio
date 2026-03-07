@@ -153,8 +153,8 @@
           "WebSocket for signaling and real-time state synchronization",
           "Integrated authentication and payment flow"
         ],
-        "impact": "Delivered production-ready video consultations with <200ms latency and seamless payment integration.",
-        "stack": ["React", "WebRTC", "WebSockets", "Node.js", "Payment Gateway"]
+        "impact": "Delivered production-ready video consultations and seamless payment integration.",
+        "stack": ["React", "WebRTC", "WebSockets", "Node.js"]
       },
       {
         "slug": "lawyers-listing",
@@ -168,7 +168,7 @@
           "JWT-based authentication with role-based access"
         ],
         "impact": "Achieved 99.9% uptime with <100ms search response times serving high-traffic legal queries.",
-        "stack": ["Next.js", "Hapi.js", "Elasticsearch", "JWT", "PostgreSQL"]
+        "stack": ["Next.js", "Hapi.js", "Elasticsearch", "JWT"]
       }
     ]
   },
@@ -186,11 +186,11 @@
       },
       {
         "category": "DevOps & Tools",
-        "skills": ["Docker", "Jenkins", "NGINX", "Git", "Grafana", "Linux"]
+        "skills": ["Docker", "Jenkins", "NGINX", "Git", "Grafana", "APM", "Sentry"]
       },
       {
         "category": "Analytics & Growth",
-        "skills": ["Mixpanel", "GrowthBook", "Google Search Console", "Core Web Vitals"]
+        "skills": ["Mixpanel", "GrowthBook", "Google Search Console", "Core Web Vitals", "Lighthouse", "Page Speed Insights"]
       }
     ]
   },

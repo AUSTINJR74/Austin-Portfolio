@@ -19,10 +19,13 @@ const ICON_GROUPS: Array<{
   {
     icons: [
       { name: 'react', x: 13, y: -10, size: 54, rotate: -8, speed: 0.15 },
+      { name: 'nextjs', x: 18, y: 100, size: 58, rotate: -6, speed: 0.14 },
       { name: 'javascript', x: 22, y: 10, size: 56, rotate: 6, speed: 0.2 },
       { name: 'html5', x: 6, y: 50, size: 58, rotate: -4, speed: 0.12 },
       { name: 'css3', x: 28, y: 90, size: 60, rotate: 10, speed: 0.18 },
       { name: 'typescript', x: 38, y: -5, size: 62, rotate: -12, speed: 0.22 },
+      { name: 'tailwindcss', x: 38, y: 110, size: 58, rotate: 8, speed: 0.16 },
+
     ],
   },
   // Row 1 — Backend (card left) → icons on right
@@ -30,8 +33,7 @@ const ICON_GROUPS: Array<{
     icons: [
       { name: 'nodejs', x: 60, y: -10, size: 64, rotate: -6, speed: 0.18 },
       { name: 'express', x: 76, y: -6, size: 66, rotate: 8, speed: 0.14 },
-      { name: 'mongodb', x: 70, y: 45, size: 68, rotate: -10, speed: 0.2 },
-      { name: 'postgresql', x: 82, y: 80, size: 70, rotate: 5, speed: 0.16 },
+      { name: 'elasticsearch', x: 68, y: 60, size: 62, rotate: -4, speed: 0.2 },
     ],
   },
   // Row 2 — DevOps (card right) → icons on left
