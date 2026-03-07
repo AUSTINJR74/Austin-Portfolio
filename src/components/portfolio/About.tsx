@@ -30,6 +30,9 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
                   src={austinImg}
                   alt="Profile placeholder"
                   className="relative w-full rounded-3xl object-cover border border-border shadow-elevated"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
             </div>
