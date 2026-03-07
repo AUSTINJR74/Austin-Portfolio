@@ -41,6 +41,7 @@ const Index = () => {
           sectionLabel={portfolioData.experience.sectionLabel}
           title={portfolioData.experience.title}
           items={portfolioData.experience.items}
+          strategyChips={portfolioData.experience.strategyChips}
         />
         <Projects
           sectionLabel={portfolioData.projects.sectionLabel}

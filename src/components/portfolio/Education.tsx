@@ -30,7 +30,7 @@ export const Education = ({ sectionLabel, title, items }: EducationProps) => {
             {items.map((edu, index) => (
               <div
                 key={index}
-                className="flex items-start gap-4 p-6 rounded-xl solais-glass"
+                className="flex max-md:flex-col items-start gap-4 p-6 rounded-xl solais-glass"
               >
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   {GraduationCapIcon && <GraduationCapIcon className="w-5 h-5 text-primary" />}

@@ -38,9 +38,9 @@
     "sectionLabel": "About",
     "title": "Meet Austin Jose",
     "paragraphs": [
-      "Austin is a frontend engineer who thinks in systems, not just screens. At Zolvit (formerly Vakilsearch), he builds and maintains high-traffic Next.js applications where every millisecond of performance translates to real business impact.",
-      "His approach is rooted in understanding the \"why\" behind technical decisions. Whether it’s choosing server-side rendering for SEO-critical pages or implementing incremental static regeneration for frequently updated content, he prioritizes solutions that scale.",
-      "He doesn’t just write code—he builds systems that empower non-engineers through CMS-driven architectures, reduce operational overhead, and improve search visibility through technical SEO implementations."
+      "Austin is a full-stack engineer who thinks in systems, not just interfaces. At Zolvit (formerly Vakilsearch), he builds and maintains high-traffic Next.js applications supported by reliable backend services, where performance and architecture directly influence production reliability.",
+      "His approach focuses on understanding the why behind technical decisions. From designing server-side rendering strategies to structuring APIs and managing efficient data flows between services, the goal is to build solutions that scale with both users and teams.",
+      "Beyond building features, Austin engineers systems that prioritize maintainability and long-term stability. Modular frontend architectures, clean backend integrations, and well-structured data workflows ensure platforms remain reliable as products continue to evolve."
     ],
     "highlights": [
       {
@@ -68,33 +68,43 @@
   "experience": {
     "sectionLabel": "Experience",
     "title": "Impact, Not Job Descriptions",
+    "strategyChips": [
+      "Microservices",
+      "Next.js Platforms",
+      "SSR / SSG / ISR",
+      "REST API Design",
+      "Performance Optimization",
+      "JWT Authentication",
+      "CMS",
+      "Caching Strategies"
+    ],
     "items": [
       {
         "company": "Zolvit",
         "previousName": "formerly Vakilsearch",
         "role": "Associate Software Engineer",
         "period": "Apr 2025 – Present",
-        "type": "Full-time",
+        "type": "Full Time",
         "highlights": [
-          "Own development of high-traffic Next.js applications serving legal services platform",
-          "Lead Core Web Vitals optimization initiatives—JS execution, caching strategies, asset delivery",
-          "Architected CMS-driven layouts enabling marketing team to ship pages without engineering",
-          "Reduced 3,000+ underperforming pages to zero in Google Search Console through technical SEO fixes",
-          "Increased search impressions by 8% within 10 days through structured data and meta optimizations"
+          "Engineered and maintained high-traffic Next.js applications powering a large-scale legal services platform.",
+          "Led performance optimization initiatives, improving Core Web Vitals through JavaScript execution tuning, advanced caching strategies, and optimized asset delivery pipelines.",
+          "Designed and implemented CMS-driven page architectures, enabling non-engineering teams to create and manage dynamic content independently.",
+          "Diagnosed and resolved large-scale indexing and rendering issues across 3,000+ pages, improving platform stability and search crawler efficiency.",
+          "Implemented structured data systems and metadata pipelines, improving content discoverability and increasing platform visibility within days."
         ]
       },
       {
         "company": "Zolvit",
         "previousName": "formerly Vakilsearch",
-        "role": "Frontend Developer Intern",
+        "role": "Frontend Developer",
         "period": "Apr 2024 – Mar 2025",
         "type": "Internship",
         "highlights": [
-          "Built production React & Next.js components for high-traffic legal services pages",
-          "Implemented accessibility standards (WCAG) and established shared component library",
-          "Integrated RESTful APIs with proper error handling and loading states",
-          "Documented components in Storybook, improving developer experience and design handoff",
-          "Collaborated with backend and design teams to improve cross-functional workflows"
+          "Developed production-ready React and Next.js components for landing pages & product",
+          "Part of building a shared UI boilerplate including reusable components and common imports to standardize development across the codebase",
+          "Integrated RESTful APIs with structured state management, error handling, and loading states",
+          "Documented and maintained reusable components in Storybook to improve developer experience and component discoverability",
+          "Collaborated with backend and design teams to deliver features and improve cross-team development workflows"
         ]
       }
     ]
