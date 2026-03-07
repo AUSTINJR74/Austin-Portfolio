@@ -156,7 +156,7 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
     <section
       ref={(n) => { sectionRef.current = n; }}
       id="skills"
-      className="relative overflow-hidden py-24 md:py-32"
+      className="relative overflow-hidden py-20 md:py-32"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.14]" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />

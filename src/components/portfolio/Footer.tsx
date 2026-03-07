@@ -19,7 +19,7 @@ export const Footer = ({ sectionLabel, title, description, socialLinks, copyrigh
   const ArrowUpRightIcon = iconMap.ArrowUpRight;
 
   return (
-    <footer id="contact" className="relative overflow-hidden py-24 md:py-32 border-t border-border">
+    <footer id="contact" className="relative overflow-hidden py-20 md:py-32 border-t border-border">
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-60" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.10]" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />

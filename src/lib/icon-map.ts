@@ -19,7 +19,10 @@ import {
   Github,
   MessageCircle,
   MessagesSquare,
-  Briefcase
+  Briefcase,
+  LayoutList,
+  CreditCard,
+  Bot
 } from 'lucide-react';
 
 export const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -43,5 +46,8 @@ export const iconMap: Record<string, React.ComponentType<{ className?: string }>
   Github,
   MessageCircle,
   Briefcase,
+  Layout: LayoutList,
+  CreditCard,
+  Bot,
   WhatsApp: MessagesSquare,
 };

@@ -139,45 +139,92 @@
     "description": "Real production systems with measurable outcomes. Each project represents a problem solved, not just code written.",
     "items": [
       {
-        "slug": "cms-legal-platform",
+        "slug": "cms-landing-platform",
         "gradient": ["#1e293b", "#334155"],
-        "icon": "Server",
-        "title": "CMS-Based Legal Services Platform",
-        "problem": "Engineering team bottleneck for content updates; slow time-to-market for new pages.",
-        "decisions": [
-          "SSR for SEO-critical pages to maximize crawlability",
-          "CMS-driven layouts with API-first content delivery",
-          "Component library for consistent UI across dynamically generated pages"
+        "gallery": [
+          "/projects/landing/page_1.png",
+          "/projects/landing/page_5.png"
         ],
-        "impact": "Reduced engineering dependency for content updates by 80%, enabling marketing team to ship pages independently.",
-        "stack": ["Next.js", "React", "TypeScript", "REST APIs", "Headless CMS"]
+        "icon": "Layout",
+        "title": "SEO-Optimized Landing Pages with Headless CMS",
+        "problem": "Marketing teams required frequent landing page launches but depended on engineers for every update, slowing campaign execution.",
+        "decisions": [
+          "Static Site Generation (SSG) in Next.js for fast load times and SEO performance",
+          "Headless CMS with Strapi to allow marketing teams to manage page content independently",
+          "Reusable UI components documented with Storybook",
+          "CloudFront + S3 CDN distribution for global content delivery",
+          "ElasticSearch integration for dynamic search capabilities"
+        ],
+        "impact": "Enabled marketing teams to launch and update landing pages independently, reducing engineering dependency and improving page performance.",
+        "stack": ["Next.js", "SSG", "Strapi CMS", "Storybook", "CloudFront", "S3", "Elasticsearch"]
+      },
+      {
+        "slug": "product-onboarding-flow",
+        "gradient": ["#1a2e35", "#2d4a53"],
+        "gallery": [
+          "/projects/landing/page_7.png",
+          "/projects/landing/page_17.png",
+          "/projects/landing/page_15.png",
+          "/projects/landing/page_9.png",
+          "/projects/landing/page_8.png",
+          "/projects/landing/page_10.png"
+        ],
+        "icon": "CreditCard",
+        "title": "Product Onboarding & Payment Flow System",
+        "problem": "Users dropped off between lead submission, payment, and product onboarding due to fragmented flows and slow page loads.",
+        "decisions": [
+          "Server Side Rendering (SSR) to ensure dynamic product onboarding pages load with fresh user data",
+          "Next.js API routes for handling backend orchestration and payment callbacks",
+          "Integrated Razorpay and PayU payment gateways",
+          "ElasticSearch for lead and transaction indexing"
+        ],
+        "impact": "Improved onboarding conversion by providing a seamless transition from lead submission to payment and product access.",
+        "stack": ["Next.js", "SSR", "Next API", "ElasticSearch", "PayU", "Razorpay"]
+      },
+      {
+        "slug": "zenius-ai-chatbot",
+        "gradient": ["#2b3245", "#394867"],
+        "gallery": [
+          "/projects/landing/page_11.png",
+          "/projects/landing/page_12.png"
+        ],
+        "icon": "Bot",
+        "title": "Zenius AI Compliance Chatbot",
+        "problem": "Users struggled to navigate complex compliance processes and required faster access to contextual guidance within the platform.",
+        "decisions": [
+          "Real-time WebSocket communication for low-latency chat interactions",
+          "Next.js based frontend for embedding chatbot seamlessly inside product workflows",
+          "Structured UI components to present compliance guidance and AI responses"
+        ],
+        "impact": "Simplified compliance workflows and improved user engagement with instant AI-driven assistance inside the platform.",
+        "stack": ["Next.js", "WebSockets"]
       },
       {
         "slug": "video-consultation",
-        "gradient": ["#1a2e35", "#2d4a53"],
+        "gradient": ["#243b55", "#141e30"],
         "icon": "Video",
-        "title": "Video Consultation Web Application",
-        "problem": "Need for real-time legal consultations with reliable, low-latency video.",
+        "title": "Real-Time Video Consultation Platform",
+        "problem": "Users needed a reliable platform for live consultations with professionals while maintaining low latency and session stability.",
         "decisions": [
-          "WebRTC for peer-to-peer video with fallback TURN servers",
-          "WebSocket for signaling and real-time state synchronization",
-          "Integrated authentication and payment flow"
+          "WebRTC peer-to-peer communication for real-time video streaming",
+          "WebSocket-based signaling for session establishment",
+          "Integrated authentication and session lifecycle management"
         ],
-        "impact": "Delivered production-ready video consultations and seamless payment integration.",
+        "impact": "Enabled seamless video consultations with stable connections and real-time communication between users and professionals.",
         "stack": ["React", "WebRTC", "WebSockets", "Node.js"]
       },
       {
-        "slug": "lawyers-listing",
+        "slug": "lawyers-listing-platform",
         "gradient": ["#2a1f3d", "#3d2f5c"],
         "icon": "Search",
-        "title": "Lawyers Listing & Public Q&A Platform",
-        "problem": "Large datasets of lawyers and Q&A content requiring fast search and SEO visibility.",
+        "title": "Lawyers Listing & Public Legal Q&A Platform",
+        "problem": "Handling large datasets of lawyers and legal queries while maintaining fast search and SEO visibility.",
         "decisions": [
-          "Server-rendered pages for search engine indexing",
-          "Elasticsearch for sub-second search across 100K+ records",
-          "JWT-based authentication with role-based access"
+          "Server-rendered pages for optimal search engine indexing",
+          "Elasticsearch for high-speed search across thousands of records",
+          "JWT-based authentication and role-based access control"
         ],
-        "impact": "Achieved 99.9% uptime with <100ms search response times serving high-traffic legal queries.",
+        "impact": "Delivered sub-100ms search responses while serving high volumes of legal queries with reliable uptime.",
         "stack": ["Next.js", "Hapi.js", "Elasticsearch", "JWT"]
       }
     ]
