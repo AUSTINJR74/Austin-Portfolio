@@ -22,9 +22,49 @@ export default function ChatUI({
 }: Props) {
   const [input, setInput] = useState("");
   const [visiblePrompts, setVisiblePrompts] = useState<PromptItem[]>([]);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+  const [placeholderText, setPlaceholderText] = useState("");
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   const lastScrolledBotIdRef = useRef<string | null>(null);
+
+  const placeholders = [
+    ".✦ ݁˖  Say Hello! Austin's Awake.",
+    ".✦ ݁˖  What would you like to know?",
+    ".✦ ݁˖  I'm listening...",
+  ];
+
+  useEffect(() => {
+    const currentPlaceholder = placeholders[placeholderIndex];
+    
+    const handleTyping = () => {
+      if (!isDeleting) {
+        // Typing effect
+        if (charIndex < currentPlaceholder.length) {
+          setPlaceholderText(currentPlaceholder.slice(0, charIndex + 1));
+          setCharIndex(charIndex + 1);
+        } else {
+          // Start deleting after a pause
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting effect
+        if (charIndex > 0) {
+          setPlaceholderText(currentPlaceholder.slice(0, charIndex - 1));
+          setCharIndex(charIndex - 1);
+        } else {
+          // Move to next placeholder
+          setIsDeleting(false);
+          setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+        }
+      }
+    };
+
+    const timeout = setTimeout(handleTyping, isDeleting ? 50 : 100);
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, placeholderIndex, placeholders]);
 
   useEffect(() => {
     const container = chatContainerRef.current;
@@ -90,7 +130,7 @@ export default function ChatUI({
         />
 
         <div className="rounded-2xl border border-primary/20 bg-card/50 backdrop-blur shadow-elevated overflow-hidden">
-          
+
           {/* Top Bar */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border/60 bg-background/30">
             <div className="flex items-center gap-1.5">
@@ -137,10 +177,10 @@ export default function ChatUI({
                             className={[
                               "rounded-xl border px-3 py-2 whitespace-pre-line",
                               m.role === "user"
-                                ? "bg-primary text-primary-foreground border-primary/30"
+                                ? "bg-primary text-primary-foreground border-primary/30 rounded-tr-none"
                                 : m.id.startsWith("init")
                                   ? "bg-gradient-primary text-primary-foreground border-primary/40 shadow-elevated"
-                                  : "bg-background/40 text-muted-foreground border-border/60",
+                                  : "bg-background/40 text-muted-foreground border-border/60 rounded-tl-none",
                             ].join(" ")}
                           >
                             {m.content}
@@ -223,23 +263,23 @@ export default function ChatUI({
                 {/* Prompt chips */}
                 {showPrompts && visiblePrompts.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {visiblePrompts.map((item) => (
-                      <button
-                        key={item.name}
-                        type="button"
-                        onClick={() => onSend(item.prompt)}
-                        className={[
-                          "w-full sm:w-auto rounded-xl border px-3 py-1.5 text-xs font-medium transition-colors",
-                          "bg-background/30 text-muted-foreground border-border/60",
-                          "hover:border-primary/60 hover:text-foreground",
-                          "text-left flex items-center justify-start gap-2",
-                          item.active ? "border-border text-foreground" : "",
-                        ].join(" ")}
-                        aria-label={`Send prompt: ${item.name}`}
-                      >
-                        🔍 {item.name}
-                      </button>
-                    ))}
+                      {visiblePrompts.map((item) => (
+                        <button
+                          key={item.name}
+                          type="button"
+                          onClick={() => onSend(item.prompt)}
+                          className={[
+                            "w-full sm:w-auto rounded-xl border px-3 py-1.5 text-xs font-medium transition-colors",
+                            "bg-background/30 text-muted-foreground border-border/60",
+                            "hover:border-primary/60 hover:text-foreground",
+                            "text-left flex items-center justify-start gap-2",
+                            item.active ? "border-border text-foreground" : "",
+                          ].join(" ")}
+                          aria-label={`Send prompt: ${item.name}`}
+                        >
+                          🔍 {item.name}
+                        </button>
+                      ))}
                   </div>
                 )}
               </div>
@@ -249,12 +289,21 @@ export default function ChatUI({
                 onSubmit={handleSubmit}
                 className="mt-4 flex items-center gap-2"
               >
-                <input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder="Say Hello! Austin’s Awake."
-                  className="w-full rounded-md border border-border/60 bg-background/40 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-                />
+                <div className="relative w-full">
+                  <input
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder={placeholderText + (charIndex < placeholders[placeholderIndex].length && !isDeleting ? "|" : "")}
+                    className="w-full rounded-md border border-primary/20 bg-primary/5 px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-white/40"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Send message"
+                  >
+                   ➤
+                  </button>
+                </div>
                 {/* <button
                   type="submit"
                   className="rounded-md border border-border/60 bg-background/40 px-3 py-2 text-xs font-semibold text-foreground hover:border-primary/60 transition-colors"
