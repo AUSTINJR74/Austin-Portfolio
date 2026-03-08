@@ -31,9 +31,9 @@ export default function ChatUI({
   const lastScrolledBotIdRef = useRef<string | null>(null);
 
   const placeholders = [
-    ".✦ ݁˖  Say Hello! Austin's Awake.",
-    ".✦ ݁˖  What would you like to know?",
-    ".✦ ݁˖  I'm listening...",
+    "Say Hello! Austin's Awake.",
+    "What would you like to know?",
+    "I'm listening...",
   ];
 
   useEffect(() => {
@@ -293,7 +293,7 @@ export default function ChatUI({
                   <input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder={placeholderText + (charIndex < placeholders[placeholderIndex].length && !isDeleting ? "|" : "")}
+                    placeholder={`${".✦ ݁˖  " + placeholderText + (charIndex < placeholders[placeholderIndex].length && !isDeleting ? "|" : "")}`}
                     className="w-full rounded-md border border-primary/20 bg-primary/5 px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-white/40"
                   />
                   <button
