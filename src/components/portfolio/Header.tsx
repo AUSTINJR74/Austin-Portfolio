@@ -39,11 +39,11 @@ export const Header = ({ navLinks, ctaButtons }: HeaderProps) => {
       <div className="container mx-auto px-6">
         <nav className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          {theme === 'dark' ? (
+          {/* {theme === 'dark' ? ( */}
             <img src="/asjs-logo-light.png" alt="ASJS Logo" className="h-full w-auto" />
-          ) : (
-            <img src="/asjs-logo-dark.png" alt="ASJS Logo" className="h-full w-auto" />
-          )}
+          {/* ) : ( */}
+            {/* <img src="/asjs-logo-dark.png" alt="ASJS Logo" className="h-full w-auto" /> */}
+          {/* )} */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
