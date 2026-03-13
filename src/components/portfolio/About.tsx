@@ -28,7 +28,7 @@ export const About = ({ sectionLabel, title, paragraphs, highlights }: AboutProp
                 <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-primary/40 via-primary/10 to-transparent blur-xl" />
                 <img
                   src={austinImg}
-                  alt="Profile placeholder"
+                  alt="Austin Jose Software Engineer"
                   className="relative w-full rounded-3xl object-cover border border-border shadow-elevated"
                   loading="eager"
                   fetchPriority="high"
