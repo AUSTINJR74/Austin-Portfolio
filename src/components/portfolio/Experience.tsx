@@ -91,13 +91,13 @@ export const Experience = ({ sectionLabel, title, strategyChips = [], items, git
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-6xl mx-auto space-y-16">
-          <div className="">
+          {/* <div className="">
             <GithubProof
               username={username}
               data={githubData}
               onViewWork={() => scrollToCard(activeCard)}
             />
-          </div>
+          </div> */}
 
           <div className="relative">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.25fr)]">

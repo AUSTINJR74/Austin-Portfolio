@@ -80,6 +80,7 @@ const VSCodeEditor = ({ userName, onNameChange, data }: { userName: string; onNa
               <div><span style={{ color: '#569cd6' }}>const</span> <span style={{ color: '#dcdcaa' }}>Welcome</span> <span style={{ color: '#d4d4d4' }}>=</span> <span style={{ color: '#d4d4d4' }}>{'()'}</span> <span style={{ color: '#569cd6' }}>=&gt;</span> <span style={{ color: '#d4d4d4' }}>{'{'}</span></div>
               <div>  <span style={{ color: '#c586c0' }}>return</span> <span style={{ color: '#d4d4d4' }}>(</span></div>
               <div>    <span style={{ color: '#808080' }}>&lt;</span><span style={{ color: '#4ec9b0' }}>div</span><span style={{ color: '#808080' }}>&gt;</span></div>
+              <div>      <span style={{ color: '#569cd6' }}>// Content</span></div>
               <div>      <span style={{ color: '#d4d4d4' }}>Welcome, </span><span style={{ color: '#d4d4d4' }}>{'{'}</span><span style={{ color: '#9cdcfe' }}>userName</span><span style={{ color: '#d4d4d4' }}>{'}'}</span></div>
               <div>    <span style={{ color: '#808080' }}>&lt;/</span><span style={{ color: '#4ec9b0' }}>div</span><span style={{ color: '#808080' }}>&gt;</span></div>
               <div>  <span style={{ color: '#d4d4d4' }}>);</span></div>

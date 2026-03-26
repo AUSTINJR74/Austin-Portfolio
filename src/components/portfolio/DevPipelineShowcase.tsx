@@ -202,7 +202,7 @@ export const ScrollShowcase = () => {
         {/* Stage 5: Landing Page */}
         <div className="absolute inset-0 flex items-center justify-center px-4"
           style={{ opacity: s5, transform: `translateY(${(1 - s5) * 50}px)`, willChange: 'transform, opacity', pointerEvents: s5 > 0.3 ? 'auto' : 'none' }}>
-          <LandingPage displayName={displayName} data={devPipeline.landingPage} />
+          <LandingPage displayName={displayName} data={devPipeline.landingPage} isVisible={s5 > 0.3} />
         </div>
 
         

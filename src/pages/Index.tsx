@@ -44,6 +44,11 @@ const Index = () => {
           strategyChips={portfolioData.experience.strategyChips}
           githubData={portfolioData.githubData}
         />
+        <Achievements
+          sectionLabel={portfolioData.achievements.sectionLabel}
+          title={portfolioData.achievements.title}
+          items={portfolioData.achievements.items}
+        />
         <Projects
           sectionLabel={portfolioData.projects.sectionLabel}
           title={portfolioData.projects.title}
@@ -54,11 +59,6 @@ const Index = () => {
           sectionLabel={portfolioData.skills.sectionLabel}
           title={portfolioData.skills.title}
           groups={portfolioData.skills.groups}
-        />
-        <Achievements
-          sectionLabel={portfolioData.achievements.sectionLabel}
-          title={portfolioData.achievements.title}
-          items={portfolioData.achievements.items}
         />
         <Education
           sectionLabel={portfolioData.education.sectionLabel}

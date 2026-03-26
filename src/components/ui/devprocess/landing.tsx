@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import { triggerConfetti } from '../confetti';
+
 interface LandingPageData {
   sectionLabel: string;
   headline: string;
@@ -6,7 +9,19 @@ interface LandingPageData {
   urlSuffix: string;
 }
 
-const LandingPage = ({ displayName, data }: { displayName: string; data: LandingPageData }) => (
+const LandingPage = ({ displayName, data, isVisible }: { displayName: string; data: LandingPageData; isVisible: boolean }) => {
+  useEffect(() => {
+    // Trigger confetti only when component becomes visible
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        triggerConfetti();
+      }, 500); // Small delay to ensure component is fully rendered
+
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
+  return (
   <div className="w-full max-w-3xl rounded-2xl overflow-hidden border shadow-2xl relative" style={{ borderColor: '#1e293b' }}>
     {/* Premium gradient overlay */}
     <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-magenta-500/10 pointer-events-none" />
@@ -80,6 +95,7 @@ const LandingPage = ({ displayName, data }: { displayName: string; data: Landing
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default LandingPage;

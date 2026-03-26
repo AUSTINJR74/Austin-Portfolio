@@ -255,31 +255,31 @@
     "sectionLabel": "Achievements",
     "title": "Measurable Impact",
     "items": [
-      {
-        "icon": "Search",
-        "metric": "3000+",
-        "label": "Underperforming Pages Fixed",
-        "description": "Reduced poor-performing pages to zero in Google Search Console through systematic technical SEO improvements."
-      },
-      {
-        "icon": "TrendingUp",
-        "metric": "8%",
-        "label": "Search Impressions Increase",
-        "description": "Achieved measurable SEO lift within 10 days through structured data and meta tag optimizations."
-      },
-      {
-        "icon": "Gauge",
-        "metric": "CWV",
-        "label": "Core Web Vitals Green",
-        "description": "Optimized LCP, FID, and CLS across mobile and desktop for production applications."
-      },
-      {
-        "icon": "Award",
-        "metric": "99.9%",
-        "label": "Application Uptime",
-        "description": "Maintained high availability for legal services platform serving thousands of daily users."
-      }
-    ]
+  {
+    "icon": "Layout",
+    "metric": "CMS",
+    "label": "Content Platform Architecture",
+    "description": "Architected a headless CMS for static landing pages, enabling marketing teams to self-serve content, reducing developer dependency, and improving delivery speed."
+  },
+  {
+    "icon": "Activity",
+    "metric": "100%",
+    "label": "Analytics & Tracking System",
+    "description": "Engineered a resilient tracking system by fixing user journey gaps and implementing a custom API fallback for ad-blocked GTM, restoring complete and reliable analytics data."
+  },
+  {
+    "icon": "Search",
+    "metric": "3000+",
+    "label": "SEO & Performance Optimization",
+    "description": "Recovered 3000+ pages in search rankings and improved Core Web Vitals through performance tuning and technical SEO, increasing organic traffic and conversions."
+  },
+  {
+    "icon": "Award",
+    "metric": "99.9%",
+    "label": "Platform Reliability",
+    "description": "Ensured high availability and production stability for a large-scale legal services platform, supporting thousands of daily users with consistent uptime."
+  }
+]
   },
   "footer": {
     "sectionLabel": "Contact",
@@ -328,7 +328,7 @@
     "vsCodeEditor": {
       "titleBarLabel": "Welcome.tsx — portfolio",
       "activeTab": "Welcome.tsx",
-      "activityBarIcons": ["📁", "🔍", "⎇", "🐛", "⚙"],
+      "activityBarIcons": ["☰", "○", "⋮", "◇", "≡"],
       "files": [
         { "name": "src", "isDir": true, "indent": 0 },
         { "name": "components", "isDir": true, "indent": 1 },
@@ -343,8 +343,8 @@
       "statusBar": {
         "branch": "main",
         "errors": "0 errors",
-        "language": "TypeScript React",
-        "languageShort": "TSX",
+        "language": "",
+        "languageShort": "",
         "encoding": "UTF-8"
       }
     },
