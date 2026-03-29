@@ -141,7 +141,7 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
     const dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
     const dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
 
-    card.style.transform = `perspective(900px) rotateX(${dy * -5}deg) rotateY(${dx * 5}deg) translateY(-6px) scale(1.02)`;
+    card.style.transform = `perspective(900px) rotateX(${dy * -15}deg) rotateY(${dx * 15}deg) translateY(-6px) scale(1.02)`;
   }, []);
 
   const handleMouseLeave = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -215,7 +215,7 @@ export const Skills = ({ sectionLabel, title, groups }: SkillsProps) => {
                       borderLeftColor: theme.accent,
                       transform: `translateY(${isVis ? 0 : 40}px) translateX(${slideX}px) rotate(${tiltDeg}deg)`,
                       opacity: isVis ? 1 : 0,
-                      transition: 'transform 2s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease-out, box-shadow 0.7s ease-out, border-color 1s ease',
+                      transition: 'transform 1s cubic-bezier(0.22,1,0.36,1), opacity 0.7s ease-out, box-shadow 0.7s ease-out, border-color 1s ease',
                     } as React.CSSProperties}
                     className={`
                       skill-card group relative w-full md:w-[50%] overflow-hidden
