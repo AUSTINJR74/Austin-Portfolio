@@ -6,6 +6,7 @@ import { GithubProof } from '@/components/portfolio/GithubProof';
 interface ExperienceProps {
   sectionLabel: string;
   title: string;
+  description: string;
   strategyChips?: string[];
   items: Array<{
     company: string;
@@ -25,7 +26,7 @@ interface ExperienceProps {
   };
 }
 
-export const Experience = ({ sectionLabel, title, strategyChips = [], items, githubData }: ExperienceProps) => {
+export const Experience = ({ sectionLabel, title, description, strategyChips = [], items, githubData }: ExperienceProps) => {
   const Building2Icon = iconMap.Building2;
   const CalendarIcon = iconMap.Calendar;
   const ChevronRightIcon = iconMap.ChevronRight;
@@ -103,13 +104,9 @@ export const Experience = ({ sectionLabel, title, strategyChips = [], items, git
             <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.25fr)]">
               {/* Left rail */}
               <div className="lg:pr-12">
-                <div className="flex flex-col lg:sticky lg:top-[180px]">
+                <div className="flex flex-col lg:sticky lg:top-[160px]">
                   <div>
-                    <SectionHeader label={sectionLabel} title={title} />
-                  <p className="md:mt-6 text-base text-muted-foreground leading-relaxed">
-                      Not a list of responsibilities. A record of systems built, performance
-                      improved, and products shipped to real users.
-                    </p>
+                    <SectionHeader label={sectionLabel} title={title} description={description} />
                     <div className="mt-10 flex flex-wrap gap-3">
                       {strategyChips.map((chip) => (
                         <span

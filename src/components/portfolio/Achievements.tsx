@@ -21,9 +21,9 @@ export const Achievements = ({ sectionLabel, title, items }: AchievementsProps) 
   
   return (
     <section className="relative overflow-hidden py-20 md:py-32">
-      <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-70" />
+      {/* <div aria-hidden className="pointer-events-none absolute inset-0 solais-sweep opacity-70" />
       <div aria-hidden className="pointer-events-none absolute inset-0 solais-grid opacity-[0.12]" />
-      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" />
+      <div aria-hidden className="pointer-events-none absolute inset-0 solais-vignette opacity-70" /> */}
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">

@@ -40,6 +40,7 @@ const Index = () => {
         <Experience
           sectionLabel={portfolioData.experience.sectionLabel}
           title={portfolioData.experience.title}
+          description={portfolioData.experience.description}
           items={portfolioData.experience.items}
           strategyChips={portfolioData.experience.strategyChips}
           githubData={portfolioData.githubData}

@@ -68,6 +68,7 @@
   "experience": {
     "sectionLabel": "Experience",
     "title": "Impact, Not Job Descriptions",
+    "description": "Not a list of responsibilities. A record of systems built, performance improved, and products shipped to real users.",
     "strategyChips": [
       "Microservices",
       "Next.js Platforms",
