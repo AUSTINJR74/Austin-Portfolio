@@ -3,6 +3,7 @@ import VSCodeEditor from '../ui/devprocess/vs-code-editor';
 import TerminalUI from '../ui/devprocess/terminal';
 import GitHubPR from '../ui/devprocess/github-pr';
 import BuildProcess from '../ui/devprocess/build-process';
+import PipelineTimeline from '../ui/devprocess/pipeline-timeline';
 import LandingPage from '../ui/devprocess/landing';
 import portfolioData from '@/data/portfolio-data.json';
 
@@ -205,7 +206,21 @@ export const ScrollShowcase = () => {
           <LandingPage displayName={displayName} data={devPipeline.landingPage} isVisible={s5 > 0.3} />
         </div>
 
-        
+        {/* ── Timeline ── */}
+        {pin === 'pinned' && (
+          <PipelineTimeline
+            progress={progress}
+            stages={[
+              { label: 'Hello', range: [0, 0.16] },
+              { label: 'Code', range: [0.16, 0.30] },
+              { label: 'Push', range: [0.30, 0.44] },
+              { label: 'Review', range: [0.44, 0.58] },
+              { label: 'Build', range: [0.58, 0.74] },
+              { label: 'Ship', range: [0.74, 1] },
+            ]}
+          />
+        )}
+
         {/* Scroll hint chip */}
         {pin === 'pinned' && progress < 0.72 && (progress > 0.15 || userName.trim().length > 0) && (
           <div className="fixed bottom-8 left-0 right-0 z-50 animate-bounce flex justify-center max-md:px-4">
