@@ -28,14 +28,13 @@ const PipelineTimeline = ({ progress, stages }: PipelineTimelineProps) => {
   return (
     <>
       {/* Mobile — horizontal, top */}
-      <div className="md:hidden fixed top-[100px] left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-4 py-3 rounded-full bg-card/70 backdrop-blur-md border border-border/40 shadow-elevated">
+      {/* <div className="md:hidden fixed top-[100px] left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-4 py-3 rounded-full bg-card/70 backdrop-blur-md border border-border/40 shadow-elevated">
         {stages.map((s, i) => {
           const done = i < activeIdx;
           const active = i === activeIdx;
           return (
             <div key={s.label} className="flex items-center gap-1">
               <div className="flex flex-col items-center">
-                {/* Dot */}
                 <div
                   className={`w-2.5 h-2.5 rounded-full flex items-center justify-center transition-all duration-500 ${
                     done
@@ -47,7 +46,6 @@ const PipelineTimeline = ({ progress, stages }: PipelineTimelineProps) => {
                 >
                   {done && <CheckIcon />}
                 </div>
-                {/* Label */}
                 <span
                   className={`text-[10px] font-mono mt-1 transition-colors duration-500 ${
                     done
@@ -60,7 +58,6 @@ const PipelineTimeline = ({ progress, stages }: PipelineTimelineProps) => {
                   {s.label}
                 </span>
               </div>
-              {/* Connector */}
               {i < stages.length - 1 && (
                 <div className="relative w-4 h-0.5 mb-2.5 rounded-full overflow-hidden bg-muted-foreground/15">
                   <div
@@ -75,7 +72,7 @@ const PipelineTimeline = ({ progress, stages }: PipelineTimelineProps) => {
             </div>
           );
         })}
-      </div>
+      </div> */}
 
       {/* Desktop — vertical, right side */}
       <div className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-50 flex-col items-center gap-0">
